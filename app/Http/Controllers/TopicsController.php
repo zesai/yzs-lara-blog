@@ -6,7 +6,6 @@ use App\Handlers\ImageUploadHandler;
 use App\Models\Category;
 use App\Models\Topic;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use Auth;
 class TopicsController extends Controller
@@ -28,6 +27,11 @@ class TopicsController extends Controller
 		return view('topics.index', compact('topics'));
 	}
 
+    /**
+     * 显示文章
+     * @param Topic $topic
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show(Topic $topic)
     {
         return view('topics.show', compact('topic'));
