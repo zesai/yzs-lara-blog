@@ -9,6 +9,7 @@
     <title>@yield('title','LaraBBS') - Laravel 进阶教程</title>
     <!-- css 样式 -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @yield('styles')
 </head>
 <body>
     <div id="app" class="{{ route_class() }}-page">
@@ -21,5 +22,6 @@
     </div>
     {{-- js --}}
     <script src="{{ mix('js/app.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

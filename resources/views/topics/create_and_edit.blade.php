@@ -1,21 +1,13 @@
 @extends('layouts.app')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('css/simditor.css') }}" type="text/css">
+@stop
 
 @section('content')
 
 <div class="container">
   <div class="col-md-10 offset-md-1">
     <div class="card ">
-
-{{--      <div class="card-header">--}}
-{{--        <h1>--}}
-{{--          Topic /--}}
-{{--          @if($topic->id)--}}
-{{--            Edit #{{ $topic->id }}--}}
-{{--          @else--}}
-{{--            Create--}}
-{{--          @endif--}}
-{{--        </h1>--}}
-{{--      </div>--}}
         <div class="card-body">
             <h2 class="">
                 <i class="far fa-edit"></i>
@@ -69,3 +61,18 @@
 </div>
 
 @endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/module.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/hotkeys.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/uploader.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/simditor.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            var editor = new Simditor({
+                textarea: $('#editor'),
+            });
+        });
+    </script>
+@stop
