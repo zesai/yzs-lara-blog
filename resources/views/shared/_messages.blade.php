@@ -2,6 +2,9 @@
     @if(session()->has($msg))
         <div class="flash-message">
             <p class="alert alert-{{ $msg }}">
+                <a href="#" class="close" data-dismiss="alert">
+                    &times;
+                </a>
                 {{ session()->get($msg) }}
             </p>
         </div>
