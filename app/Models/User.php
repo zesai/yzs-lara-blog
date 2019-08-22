@@ -6,7 +6,6 @@ use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Auth;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -18,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function notify($instance)
     {
         //如果要通知的人是当前用户，就不必通知了！
-        if ($this->id == Auth::id()) {
+        if ($this->id == \Auth::id()) {
             return ;
         }
 
@@ -79,5 +78,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function isAuthorOf($model)
     {
         return $this->id == $model->user_id;
+    }
+
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
+        $this->save();
+
+        //标记通知为已读 (循环)
+        $this->unreadNotifications->markAsRead();
     }
 }
