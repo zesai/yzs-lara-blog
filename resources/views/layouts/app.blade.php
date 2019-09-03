@@ -49,7 +49,7 @@
         @include('layouts._footer')
     </div>
     {{--返回顶部--}}
-    <button id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="返回顶部" data-toggle="tooltip" data-placement="top">
+    <button id="back-to-top" href="#" data-toggle="tooltip" data-placement="left"  class="btn btn-primary btn-lg back-to-top" role="button" title="返回顶部" data-toggle="tooltip" data-placement="top">
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
     </button>
     {{-- js --}}
@@ -60,6 +60,8 @@
     <script src="http://cdn.bootcss.com/scrollup/2.4.0/jquery.scrollUp.min.js"></script>
     <script>
         $(document).ready(function(){
+            var back_top = $('#back-to-top');
+            back_top.tooltip({ boundary: 'window' });
             $(window).scroll(function () {
                 if ($(this).scrollTop() > 50) {
                     $('#back-to-top').fadeIn();
@@ -68,7 +70,7 @@
                 }
             });
             // scroll body to 0px on click
-            $('#back-to-top').click(function () {
+            back_top.click(function () {
                 // $('#back-to-top').tooltip('hide');
                 $('body,html').animate({
                     scrollTop: 0
