@@ -33,7 +33,9 @@
             right: 30px;
             display: none;
         }
-
+        #back-to-top > .fa{
+            margin-left: -1px;
+        }
     </style>
     @yield('styles')
 </head>
@@ -51,6 +53,9 @@
         <i class="fa fa-chevron-up" aria-hidden="true"></i>
     </button>
     {{-- js --}}
+    @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="http://cdn.bootcss.com/scrollup/2.4.0/jquery.scrollUp.min.js"></script>
     <script>
@@ -71,6 +76,8 @@
                 return false;
             });
             // $('#back-to-top').tooltip('show');
+
+
         });
     </script>
     @yield('scripts')
