@@ -6,6 +6,7 @@ use App\Handlers\ImageUploadHandler;
 use App\Markdown\Markdown;
 use App\Markdown\Parser;
 use App\Models\Category;
+use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,12 +31,15 @@ class TopicsController extends Controller
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function index(Request $request, Topic $topic, User $user)
+	public function index(Request $request, Topic $topic, User $user, Link $link)
 	{
         $topics = $topic->withOrder($request->order)->paginate(20);
-        $active_users = $user->getActiveUsers();
 
-		return view('topics.index', compact('topics', 'active_users'));
+        //获取活跃用户
+        $active_users = $user->getActiveUsers();
+        //获取推荐资源
+        $links = $link->getAllCached();
+		return view('topics.index', compact('topics', 'active_users', 'links'));
 	}
 
     /**
