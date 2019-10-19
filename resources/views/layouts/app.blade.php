@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title','IT') - Laravel 个人博客</title>
-    <meta name="description" content="@yield('description', setting('seo_description','个人学习记录博客'))" />
-    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'PHP,Laravel,后端,MySQL,文章'))" />
+{{--    <meta name="description" content="@yield('description', setting('seo_description','个人学习记录博客'))" />--}}
+    <meta name="description" content="@yield('description','个人学习记录博客')" />
+{{--    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'PHP,Laravel,后端,MySQL,文章'))" />--}}
+    <meta name="keyword" content="@yield('keyword', 'PHP,Laravel,后端,MySQL,文章')" />
     <!-- css 样式 -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>

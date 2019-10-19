@@ -4,6 +4,8 @@
 namespace App\Handlers;
 
 use Image;
+use zgldh\QiniuStorage\QiniuStorage;
+
 class ImageUploadHandler
 {
     //只允许此类后缀文件上传
@@ -11,6 +13,7 @@ class ImageUploadHandler
 
     public function save($file, $folder, $file_prefix, $max_width = false)
     {
+
         // 构建存储的文件夹规则，值如：uploads/images/avatars/201709/21/
         // 文件夹切割能让查找效率更高。
 
@@ -30,6 +33,13 @@ class ImageUploadHandler
         // 如果上传的不是图片将终止操作
         if ( ! in_array($extension, $this->allowed_ext)){
             return false;
+        }
+
+        //这里添加了七牛云的判断----$is_qiniu = false默认是false不启用,要启用的话传入true就可以了
+        if(env('QINIUYUN')){
+            return [
+                'path' => $this->qiniuUpload($file, $folder_name)
+            ];
         }
 
         // 将图片移动到我们的目标存储路径中
@@ -59,4 +69,15 @@ class ImageUploadHandler
 
         $image->save();
     }
+
+    public function qiniuUpload($file, $folder_name)
+    {
+        $disk = QiniuStorage::disk('qiniu');
+
+        $filename = $disk->put($folder_name, $file);
+
+        return 'http://' . env('QINIUYUN_DOMAIN_DEFAULT') . '/' . $filename;
+
+    }
+
 }

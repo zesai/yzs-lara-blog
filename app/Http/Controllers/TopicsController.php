@@ -16,12 +16,10 @@ use Illuminate\Support\Facades\Cache;
 
 class TopicsController extends Controller
 {
-    protected $markdown;
 
-    public function __construct(Markdown $markdown)
+    public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->markdown = $markdown;
+        $this->middleware('auth', ['except' => ['index', 'show', 'uploadImage']]);
     }
 
     /**
@@ -48,13 +46,13 @@ class TopicsController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function show(Request $request, Topic $topic)
+    public function show(Request $request, Topic $topic, Markdown $markdown)
     {
         if ( ! empty($topic->slug) && $topic->slug != $request->slug) {
             return redirect($topic->link(), 301);
         }
 
-        $topic->body = $this->markdown->toHtml($topic->body);
+        $topic->body = $markdown->toHtml($topic->body);
         return view('topics.show', compact('topic') );
     }
 
@@ -139,15 +137,15 @@ class TopicsController extends Controller
             'msg'       => '上传失败!',
             'file_path' => ''
         ];
-        if ($file = $request->file){
-            $result = $uploader->save($request->file, 'topics', \Auth::id(), 1024);
+        if ($file = $request->upload_file){
+//            $result = $uploader->save($file, 'topics', \Auth::id(), 1024);
+            $result = $uploader->save($file, 'topics', 1, 1024);
             if($result){
                $data['file_path']  = $result['path'];
                $data['msg']        = '上传成功!';
                $data['success']    = true;
             }
         }
-
         return $data;
     }
 }

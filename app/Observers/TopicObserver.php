@@ -20,6 +20,10 @@ class TopicObserver
         // 生成话题摘录
         $topic->excerpt = make_excerpt($topic->body);
 
+        if (env('QINIUYUN')) {
+            $topic->cover = 'http://' . env('QINIUYUN_DOMAIN_DEFAULT') . '/' . $topic->cover;
+        }
+
     }
 
     public function saved(Topic $topic)

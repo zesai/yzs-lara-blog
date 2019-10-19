@@ -5,6 +5,6 @@
             Copyright © 2018-2020 小岳 All Rights Reserved V.1.0.0 | 京ICP备18030015号
         </p>
 
-        <p class="float-right"><a href="mailto:{{ setting('contact_email') }}">联系我们</a></p>
+{{--        <p class="float-right"><a href="mailto:{{ setting('contact_email') }}">联系我们</a></p>--}}
     </div>
 </footer>
