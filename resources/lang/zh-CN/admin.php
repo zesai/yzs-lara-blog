@@ -103,4 +103,8 @@ return [
     'prev'                   => '上一步',
     'next'                   => '下一步',
     'quick_create'           => '快速创建',
+
+    'Url_Address'            => '网站地址',
+    'Created at'             => '创建时间',
+    'Updated at'             => '更新时间',
 ];

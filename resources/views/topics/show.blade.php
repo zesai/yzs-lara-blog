@@ -13,77 +13,78 @@
 @section('content')
     <div class="row">
 
-        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info left-box">
+      <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
+        <div class="card ">
+          <div class="card-body">
+
+            <h1 class="text-center mt-3 mb-3">
+              <div class="pull-left">
+                <i class="fa fa-file-text-o"></i>
+                <span style="line-height: 34px;">{{ $topic->title }}</span>
+              </div>
+              <div class="clearfix"></div>
+            </h1>
+
+            <p class="book-article-meta" style="margin-bottom: 10px;">
+
+              <a href="{{ route('categories.show', $topic->category->id) }}" title="分类" class="hide-on-mobile remove-padding-left"><i class="fa fa-folder" aria-hidden="true"></i> {{$topic->category->name}}</a>
+              <span class="divider hide-on-mobile">/</span>
+              <a class=" hide-on-mobile" href="#" title="作者">
+                <img class="ui image display-inline-block" style="width:16px;height:16px;margin-top:-2px;" src="{{ $topic->user->avatar }}"> {{ $topic->user->name }}
+              </a>
+              <span class="divider hide-on-mobile">/</span>
+              <a class="new-tooltip" data-inverted="" data-toggle="tooltip" title="{{ $topic->created_at }}" data-placement="bottom">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                <span title="{{ $topic->created_at }}">
+                                {{ $topic->created_at->diffForHumans() }}
+                            </span>
+              </a>
+              <span class="divider">/</span>
+              <span class="text-mute"><i class="fa fa-eye" aria-hidden="true"></i> 609</span>
+              <span class="divider">/</span>
+              <span class="text-mute"><i class="far fa-comment" aria-hidden="true"></i>
+                        {{ $topic->reply_count }}</span>
+            </p>
+            <div class="ui divider"></div>
+
+            <div class="topic-body mt-4 mb-4">
+              {!! $topic->body !!}
+            </div>
+            @can('update', $topic)
+              <div class="operate">
+                <hr>
+                <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
+                  <i class="far fa-edit"></i> 编辑
+                </a>
+                <form action="{{ route('topics.destroy', $topic->id) }}" method="POST"
+                      style="display: inline-block"
+                      onclick="return confirm('确定要删除吗？');">
+                  {{ csrf_field() }}
+                  {{ method_field('DELETE') }}
+                  <button type="submit" class="btn btn-outline-secondary btn-sm">
+                    <i class="far fa-trash-alt"></i> 删除
+                  </button>
+                </form>
+              </div>
+            @endcan
+          </div>
+        </div>
+
+        {{-- 用户回复列表 --}}
+        <div class="card topic-reply mt-4">
+          <div class="card-body">
+            @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
+            @include('topics._reply_list', ['replies' => $topic->replies()->with('user', 'topic')->get()])
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-3 hidden-sm hidden-xs author-info left-box">
             @include('topics._left_author_info',['topic'=>$topic])
             <div class="card" id="left-title-box">
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 topic-content">
-            <div class="card ">
-                <div class="card-body">
-
-                    <h1 class="text-center mt-3 mb-3">
-                        <div class="pull-left">
-                            <i class="fa fa-file-text-o"></i>
-                            <span style="line-height: 34px;">{{ $topic->title }}</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </h1>
-
-                    <p class="book-article-meta" style="margin-bottom: 10px;">
-
-                        <a href="{{ route('categories.show', $topic->category->id) }}" title="分类" class="hide-on-mobile remove-padding-left"><i class="fa fa-folder" aria-hidden="true"></i> {{$topic->category->name}}</a>
-                        <span class="divider hide-on-mobile">/</span>
-                        <a class=" hide-on-mobile" href="#" title="作者">
-                            <img class="ui image display-inline-block" style="width:16px;height:16px;margin-top:-2px;" src="{{ $topic->user->avatar }}"> {{ $topic->user->name }}
-                        </a>
-                        <span class="divider hide-on-mobile">/</span>
-                        <a class="new-tooltip" data-inverted="" data-toggle="tooltip" title="{{ $topic->created_at }}" data-placement="bottom">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i>
-                            <span title="{{ $topic->created_at }}">
-                                {{ $topic->created_at->diffForHumans() }}
-                            </span>
-                        </a>
-                        <span class="divider">/</span>
-                        <span class="text-mute"><i class="fa fa-eye" aria-hidden="true"></i> 609</span>
-                        <span class="divider">/</span>
-                        <span class="text-mute"><i class="far fa-comment" aria-hidden="true"></i>
-                        {{ $topic->reply_count }}</span>
-                    </p>
-                    <div class="ui divider"></div>
-
-                    <div class="topic-body mt-4 mb-4">
-                        {!! $topic->body !!}
-                    </div>
-                    @can('update', $topic)
-                        <div class="operate">
-                            <hr>
-                            <a href="{{ route('topics.edit', $topic->id) }}" class="btn btn-outline-secondary btn-sm" role="button">
-                                <i class="far fa-edit"></i> 编辑
-                            </a>
-                            <form action="{{ route('topics.destroy', $topic->id) }}" method="POST"
-                                style="display: inline-block"
-                                onclick="return confirm('确定要删除吗？');">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-                                <button type="submit" class="btn btn-outline-secondary btn-sm">
-                                    <i class="far fa-trash-alt"></i> 删除
-                                </button>
-                            </form>
-                        </div>
-                    @endcan
-                </div>
-            </div>
-
-            {{-- 用户回复列表 --}}
-            <div class="card topic-reply mt-4">
-                <div class="card-body">
-                    @includeWhen(Auth::check(), 'topics._reply_box', ['topic' => $topic])
-                    @include('topics._reply_list', ['replies' => $topic->replies()->with('user', 'topic')->get()])
-                </div>
-            </div>
-        </div>
     </div>
 @stop
 @section('scripts')

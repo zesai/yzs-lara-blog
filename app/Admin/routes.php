@@ -12,6 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('topics', TopicsController::class);
-    $router->resource('friend-links', FriendLinksController::class);
+    $router->resource('friend_links', FriendLinksController::class);
 
 });

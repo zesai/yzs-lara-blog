@@ -17,7 +17,7 @@ class TopicsController extends AdminController
      *
      * @var string
      */
-    protected $title = 'App\Models\Topic';
+    protected $title = '文章';
 
 
     public function index(Content $content)
@@ -36,15 +36,6 @@ class TopicsController extends AdminController
     protected function grid()
     {
         $grid = new Grid(new Topic);
-
-        $grid->disableExport();
-        $grid->disableColumnSelector();
-
-        $grid->actions(function ($actions) {
-            // 去掉查看
-            $actions->disableView();
-        });
-
 
         $grid->column('id', __('Id'));
         $grid->column('title', '标题')->display(function ($title) {
@@ -107,22 +98,6 @@ class TopicsController extends AdminController
     protected function form()
     {
         $form = new Form(new Topic);
-
-        $form->tools(function (Form\Tools $tools) {
-            // 去掉`删除`按钮
-            $tools->disableDelete();
-            // 去掉`查看`按钮
-            $tools->disableView();
-        });
-
-        $form->footer(function ($footer) {
-            // 去掉`查看`checkbox
-            $footer->disableViewCheck();
-            // 去掉`继续编辑`checkbox
-            $footer->disableEditingCheck();
-            // 去掉`继续创建`checkbox
-            $footer->disableCreatingCheck();
-        });
 
         $form->text('title', __('标题'));
         $form->select('category_id', __('分类'))

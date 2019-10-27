@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title','IT') - Laravel 个人博客</title>
+    <title>@yield('title','IT') - 一叶轻舟</title>
 {{--    <meta name="description" content="@yield('description', setting('seo_description','个人学习记录博客'))" />--}}
     <meta name="description" content="@yield('description','个人学习记录博客')" />
 {{--    <meta name="keyword" content="@yield('keyword', setting('seo_keyword', 'PHP,Laravel,后端,MySQL,文章'))" />--}}
@@ -15,29 +15,27 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
         /*返回顶部样式*/
-        .back-to-top {
-            background-color: #777;
-            color: #eee;
-            text-align: center;
-            overflow: hidden;
-            width: 46px;
-            height: 46px;
-            border: none;
-            opacity: .8;
-        }
-        .back-to-top:hover{
-            background-color:#333
-        }
-        @media screen and (min-width:992px){.back-to-top{bottom:80px}}
-        .back-to-top {
-            cursor: pointer;
-            position: fixed;
-            bottom: 80px;
-            right: 30px;
-            display: none;
-        }
-        #back-to-top > .fa{
-            margin-left: -1px;
+        #scrollUp {
+          bottom: 75px;
+          right: 35px;
+          width: 38px;
+          height: 38px;
+          background: #444;
+          color: #ffffff;
+          font-size: 20px;
+          display: block;
+          line-height: 40px;
+          position: fixed;
+          text-align: center;
+          text-decoration: none;
+          -webkit-transition: all 0.5s;
+          -o-transition: all 0.5s;
+          -moz-transition: all 0.5s;
+          transition: all 0.5s;
+          z-index: 1000;
+          -webkit-border-radius: 5px;
+          -moz-border-radius: 5px;
+          border-radius: 5px;
         }
     </style>
     @yield('styles')
@@ -51,40 +49,19 @@
         </div>
         @include('layouts._footer')
     </div>
-    {{--返回顶部--}}
-    <button id="back-to-top" href="#" data-toggle="tooltip" data-placement="left"  class="new-tooltip btn btn-primary btn-lg back-to-top" role="button" title="返回顶部">
-        <i class="fa fa-chevron-up" aria-hidden="true"></i>
-    </button>
     {{-- js --}}
     @if (app()->isLocal())
-        @include('sudosu::user-selector')
+{{--        @include('sudosu::user-selector')--}}
     @endif
     <script src="{{ mix('js/app.js') }}"></script>
-    <script src="http://cdn.bootcss.com/scrollup/2.4.0/jquery.scrollUp.min.js"></script>
+    <script src="/js/jquery.scrollUp.js"></script>
     <script>
-        // $(document).ready(function(){
-            var back_top = $('#back-to-top');
-            $('.new-tooltip').tooltip();
-
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    back_top.fadeIn();
-                } else {
-                    back_top.fadeOut();
-                }
-            });
-            // scroll body to 0px on click
-            back_top.click(function () {
-                back_top.tooltip('hide');
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 800);
-                return false;
-            });
-            back_top.tooltip({'show':500});
-
-
-        // });
+        $.scrollUp({
+            scrollText: '<i class="fa fa-angle-up"></i>',
+            easingType: 'linear',
+            scrollSpeed: 900,
+            animation: 'fade'
+        });
     </script>
     @yield('scripts')
 </body>
