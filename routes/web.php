@@ -36,7 +36,7 @@ Route::get('email/resend', 'Auth\VerificationController@resend')->name('verifica
 Route::resource('users', 'UsersController', ['only'=>['show','edit','update']]);
 //话题资源路由
 //Route::resource('topics', 'TopicsController', ['only' => ['index', 'create', 'store', 'update', 'edit', 'destroy']]);
-Route::resource('topics', 'TopicsController', ['only' => ['index']]);
+Route::get('topics', 'TopicsController@index')->name('topics.index');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 //分类路由
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);

@@ -3935,9 +3935,7 @@ input[type=button].btn-block {
   height: calc(1rem - 4px);
   background-color: #adb5bd;
   border-radius: 0.5rem;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
   transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: transform 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -3948,8 +3946,7 @@ input[type=button].btn-block {
 
 .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
   background-color: #fff;
-  -webkit-transform: translateX(0.75rem);
-          transform: translateX(0.75rem);
+  transform: translateX(0.75rem);
 }
 
 .custom-switch .custom-control-input:disabled:checked ~ .custom-control-label::before {
@@ -4944,12 +4941,10 @@ input[type=button].btn-block {
 
 @media (min-width: 576px) {
   .card-columns {
-    -webkit-column-count: 3;
-       -moz-column-count: 3;
-            column-count: 3;
-    -webkit-column-gap: 1.25rem;
-       -moz-column-gap: 1.25rem;
-            column-gap: 1.25rem;
+    -moz-column-count: 3;
+         column-count: 3;
+    -moz-column-gap: 1.25rem;
+         column-gap: 1.25rem;
     orphans: 1;
     widows: 1;
   }
@@ -5957,11 +5952,8 @@ a.close.disabled {
 }
 
 .modal.fade .modal-dialog {
-  transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
-  -webkit-transform: translate(0, -50px);
-          transform: translate(0, -50px);
+  transform: translate(0, -50px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -5971,8 +5963,7 @@ a.close.disabled {
 }
 
 .modal.show .modal-dialog {
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 
 .modal-dialog-scrollable {
@@ -6473,9 +6464,7 @@ a.close.disabled {
   margin-right: -100%;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
-  transition: -webkit-transform 0.6s ease-in-out;
   transition: transform 0.6s ease-in-out;
-  transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -6492,21 +6481,18 @@ a.close.disabled {
 
 .carousel-item-next:not(.carousel-item-left),
 .active.carousel-item-right {
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .carousel-item-prev:not(.carousel-item-right),
 .active.carousel-item-left {
-  -webkit-transform: translateX(-100%);
-          transform: translateX(-100%);
+  transform: translateX(-100%);
 }
 
 .carousel-fade .carousel-item {
   opacity: 0;
   transition-property: opacity;
-  -webkit-transform: none;
-          transform: none;
+  transform: none;
 }
 
 .carousel-fade .carousel-item.active,
@@ -6642,15 +6628,13 @@ a.close.disabled {
 
 @-webkit-keyframes spinner-border {
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes spinner-border {
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -6674,8 +6658,7 @@ a.close.disabled {
 
 @-webkit-keyframes spinner-grow {
   0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
   }
 
   50% {
@@ -6685,8 +6668,7 @@ a.close.disabled {
 
 @keyframes spinner-grow {
   0% {
-    -webkit-transform: scale(0);
-            transform: scale(0);
+    transform: scale(0);
   }
 
   50% {
@@ -10663,7 +10645,7 @@ a.text-dark:focus {
 }
 
 /*!
- * Font Awesome Free 5.8.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -10671,6 +10653,7 @@ a.text-dark:focus {
 .fas,
 .far,
 .fal,
+.fad,
 .fab {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -10800,63 +10783,53 @@ a.text-dark:focus {
 
 @-webkit-keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 @keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
-          transform: rotate(90deg);
+  transform: rotate(90deg);
 }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
-  -webkit-transform: rotate(180deg);
-          transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -webkit-transform: rotate(270deg);
-          transform: rotate(270deg);
+  transform: rotate(270deg);
 }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
-  -webkit-transform: scale(-1, 1);
-          transform: scale(-1, 1);
+  transform: scale(-1, 1);
 }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(1, -1);
-          transform: scale(1, -1);
+  transform: scale(1, -1);
 }
 
 .fa-flip-both,
 .fa-flip-horizontal.fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(-1, -1);
-          transform: scale(-1, -1);
+  transform: scale(-1, -1);
 }
 
 :root .fa-rotate-90,
@@ -11241,6 +11214,14 @@ readers do not read off random characters that represent icons */
   content: "\F24E";
 }
 
+.fa-balance-scale-left:before {
+  content: "\F515";
+}
+
+.fa-balance-scale-right:before {
+  content: "\F516";
+}
+
 .fa-ban:before {
   content: "\F05E";
 }
@@ -11331,6 +11312,10 @@ readers do not read off random characters that represent icons */
 
 .fa-bicycle:before {
   content: "\F206";
+}
+
+.fa-biking:before {
+  content: "\F84A";
 }
 
 .fa-bimobject:before {
@@ -11449,6 +11434,18 @@ readers do not read off random characters that represent icons */
   content: "\F836";
 }
 
+.fa-border-all:before {
+  content: "\F84C";
+}
+
+.fa-border-none:before {
+  content: "\F850";
+}
+
+.fa-border-style:before {
+  content: "\F853";
+}
+
 .fa-bowling-ball:before {
   content: "\F436";
 }
@@ -11539,6 +11536,10 @@ readers do not read off random characters that represent icons */
 
 .fa-business-time:before {
   content: "\F64A";
+}
+
+.fa-buy-n-large:before {
+  content: "\F8A6";
 }
 
 .fa-buysellads:before {
@@ -12077,6 +12078,10 @@ readers do not read off random characters that represent icons */
   content: "\F1F9";
 }
 
+.fa-cotton-bureau:before {
+  content: "\F89E";
+}
+
 .fa-couch:before {
   content: "\F4B8";
 }
@@ -12613,6 +12618,10 @@ readers do not read off random characters that represent icons */
   content: "\F082";
 }
 
+.fa-fan:before {
+  content: "\F863";
+}
+
 .fa-fantasy-flight-games:before {
   content: "\F6DC";
 }
@@ -12997,6 +13006,10 @@ readers do not read off random characters that represent icons */
   content: "\F1D3";
 }
 
+.fa-git-alt:before {
+  content: "\F841";
+}
+
 .fa-git-square:before {
   content: "\F1D2";
 }
@@ -13341,6 +13354,14 @@ readers do not read off random characters that represent icons */
   content: "\F292";
 }
 
+.fa-hat-cowboy:before {
+  content: "\F8C0";
+}
+
+.fa-hat-cowboy-side:before {
+  content: "\F8C1";
+}
+
 .fa-hat-wizard:before {
   content: "\F6E8";
 }
@@ -13511,6 +13532,10 @@ readers do not read off random characters that represent icons */
 
 .fa-icicles:before {
   content: "\F7AD";
+}
+
+.fa-icons:before {
+  content: "\F86D";
 }
 
 .fa-id-badge:before {
@@ -13977,6 +14002,10 @@ readers do not read off random characters that represent icons */
   content: "\F136";
 }
 
+.fa-mdb:before {
+  content: "\F8CA";
+}
+
 .fa-medal:before {
   content: "\F5A2";
 }
@@ -14161,6 +14190,10 @@ readers do not read off random characters that represent icons */
   content: "\F6FC";
 }
 
+.fa-mouse:before {
+  content: "\F8CC";
+}
+
 .fa-mouse-pointer:before {
   content: "\F245";
 }
@@ -14195,10 +14228,6 @@ readers do not read off random characters that represent icons */
 
 .fa-nimblr:before {
   content: "\F5A8";
-}
-
-.fa-nintendo-switch:before {
-  content: "\F418";
 }
 
 .fa-node:before {
@@ -14271,6 +14300,10 @@ readers do not read off random characters that represent icons */
 
 .fa-optin-monster:before {
   content: "\F23C";
+}
+
+.fa-orcid:before {
+  content: "\F8D2";
 }
 
 .fa-osi:before {
@@ -14445,6 +14478,10 @@ readers do not read off random characters that represent icons */
   content: "\F095";
 }
 
+.fa-phone-alt:before {
+  content: "\F879";
+}
+
 .fa-phone-slash:before {
   content: "\F3DD";
 }
@@ -14453,8 +14490,16 @@ readers do not read off random characters that represent icons */
   content: "\F098";
 }
 
+.fa-phone-square-alt:before {
+  content: "\F87B";
+}
+
 .fa-phone-volume:before {
   content: "\F2A0";
+}
+
+.fa-photo-video:before {
+  content: "\F87C";
 }
 
 .fa-php:before {
@@ -14717,6 +14762,10 @@ readers do not read off random characters that represent icons */
   content: "\F543";
 }
 
+.fa-record-vinyl:before {
+  content: "\F8D9";
+}
+
 .fa-recycle:before {
   content: "\F1B8";
 }
@@ -14751,6 +14800,10 @@ readers do not read off random characters that represent icons */
 
 .fa-registered:before {
   content: "\F25D";
+}
+
+.fa-remove-format:before {
+  content: "\F87D";
 }
 
 .fa-renren:before {
@@ -15201,16 +15254,32 @@ readers do not read off random characters that represent icons */
   content: "\F15D";
 }
 
+.fa-sort-alpha-down-alt:before {
+  content: "\F881";
+}
+
 .fa-sort-alpha-up:before {
   content: "\F15E";
+}
+
+.fa-sort-alpha-up-alt:before {
+  content: "\F882";
 }
 
 .fa-sort-amount-down:before {
   content: "\F160";
 }
 
+.fa-sort-amount-down-alt:before {
+  content: "\F884";
+}
+
 .fa-sort-amount-up:before {
   content: "\F161";
+}
+
+.fa-sort-amount-up-alt:before {
+  content: "\F885";
 }
 
 .fa-sort-down:before {
@@ -15221,8 +15290,16 @@ readers do not read off random characters that represent icons */
   content: "\F162";
 }
 
+.fa-sort-numeric-down-alt:before {
+  content: "\F886";
+}
+
 .fa-sort-numeric-up:before {
   content: "\F163";
+}
+
+.fa-sort-numeric-up-alt:before {
+  content: "\F887";
 }
 
 .fa-sort-up:before {
@@ -15251,6 +15328,10 @@ readers do not read off random characters that represent icons */
 
 .fa-speaker-deck:before {
   content: "\F83C";
+}
+
+.fa-spell-check:before {
+  content: "\F891";
 }
 
 .fa-spider:before {
@@ -15295,6 +15376,10 @@ readers do not read off random characters that represent icons */
 
 .fa-stack-overflow:before {
   content: "\F16C";
+}
+
+.fa-stackpath:before {
+  content: "\F842";
 }
 
 .fa-stamp:before {
@@ -15463,6 +15548,10 @@ readers do not read off random characters that represent icons */
 
 .fa-swatchbook:before {
   content: "\F5C3";
+}
+
+.fa-swift:before {
+  content: "\F8E1";
 }
 
 .fa-swimmer:before {
@@ -15845,6 +15934,10 @@ readers do not read off random characters that represent icons */
   content: "\F403";
 }
 
+.fa-umbraco:before {
+  content: "\F8E8";
+}
+
 .fa-umbrella:before {
   content: "\F0E9";
 }
@@ -16103,6 +16196,10 @@ readers do not read off random characters that represent icons */
 
 .fa-vnv:before {
   content: "\F40B";
+}
+
+.fa-voicemail:before {
+  content: "\F897";
 }
 
 .fa-volleyball-ball:before {
@@ -16375,7 +16472,7 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.8.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -16384,8 +16481,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: auto;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot?dcce4b7fbd5e895561e18af4668265af);
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot?dcce4b7fbd5e895561e18af4668265af) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2?e6257a726a0cf6ec8c6fec22821c055f) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff?427d721b86fc9c68b2e85ad42b69238c) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf?65b9977aa23185e8964b36eddbce7a20) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg?5eb754ab7dbd2fee562360528db4c3c0) format("svg");
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot?c1a866ec0e04a5e1915b41fcf261457c);
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.eot?c1a866ec0e04a5e1915b41fcf261457c) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff2?f5f2566b93e89391da4db79462b8078b) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.woff?c4f508e7c4f01a9eeba7f08155cde04e) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.ttf?65b286af947c0d982ca01b40e1fcab38) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-regular-400.svg?7b9568e6389b1f8ae0902cd39665fc1e) format("svg");
 }
 
 .far {
@@ -16394,7 +16491,7 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.8.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -16403,8 +16500,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: auto;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?46e7cec623d8bd790d9fdbc8de2d3ee7);
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?46e7cec623d8bd790d9fdbc8de2d3ee7) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?418dad87601f9c8abd0e5798c0dc1feb) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff?a7140145ebaaf5fb14e40430af5d25c4) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?ff8d9f8adb0d09f11d4816a152672f53) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg?49279363201ed19a840796e05a74a91b) format("svg");
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?8e4a6dcc692b3887f9f542cd6894d6d4);
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?8e4a6dcc692b3887f9f542cd6894d6d4) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?44d537ab79f921fde5a28b2c1636f397) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff?333bae208dc363746961b234ff6c2500) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?0bff33a5fd7ec390235476b4859747a0) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg?c2801fb415f03c7b170934769d7b5397) format("svg");
 }
 
 .fa,
@@ -16414,7 +16511,7 @@ readers do not read off random characters that represent icons */
 }
 
 /*!
- * Font Awesome Free 5.8.1 by @fontawesome - https://fontawesome.com
+ * Font Awesome Free 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
 
@@ -16423,12 +16520,412 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: normal;
   font-display: auto;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot?a7b95dbdd87e0c809570affaf366a434);
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot?a7b95dbdd87e0c809570affaf366a434) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2?5e2f92123d241cabecf0b289b9b08d4a) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff?2ef8ba3410dcc71578a880e7064acd7a) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf?98b6db59be947f563350d2284fc9ea36) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg?5bf145531213545e03ff41cd27df7d2b) format("svg");
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot?5063b105c7646c8043d58c5289f02cca);
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.eot?5063b105c7646c8043d58c5289f02cca) format("embedded-opentype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2?cccc9d29470e879e40eb70249d9a2705) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff?c5e0f14f88a828261ba01558ce2bf26f) format("woff"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf?06147b6cd88c7346cecd1edd060cd5de) format("truetype"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.svg?a9c4bb7348f42626454c988dbde1d0a0) format("svg");
 }
 
 .fab {
   font-family: "Font Awesome 5 Brands";
+}
+
+.markdown {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #636b6f;
+  overflow: hidden;
+  line-height: 2;
+  word-wrap: break-word;
+}
+
+.markdown a {
+  background: transparent;
+}
+
+.markdown a:active,
+.markdown a:hover {
+  outline: 0;
+}
+
+.markdown ol li {
+  margin: 8px 0;
+}
+
+.markdown pre[class*=language-] {
+  margin: 1.2em 0 !important;
+}
+
+.markdown strong {
+  font-weight: bold;
+}
+
+.markdown h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown img {
+  border: 0;
+}
+
+.markdown hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown td,
+.markdown th {
+  padding: 0;
+}
+
+.markdown * {
+  box-sizing: border-box;
+}
+
+.markdown a {
+  color: #16A085;
+  text-decoration: none;
+}
+
+.markdown a:hover,
+.markdown a:focus,
+.markdown a:active {
+  text-decoration: underline;
+}
+
+.markdown hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown hr:before,
+.markdown hr:after {
+  display: table;
+  content: " ";
+}
+
+.markdown hr:after {
+  clear: both;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown h1 {
+  font-size: 30px;
+}
+
+.markdown h2 {
+  font-size: 21px;
+}
+
+.markdown h3 {
+  font-size: 16px;
+}
+
+.markdown h4 {
+  font-size: 14px;
+}
+
+.markdown h5 {
+  font-size: 12px;
+}
+
+.markdown h6 {
+  font-size: 11px;
+}
+
+.markdown blockquote {
+  margin: 0;
+}
+
+.markdown ul,
+.markdown ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown ol ol {
+  list-style-type: lower-roman;
+}
+
+.markdown dd {
+  margin-left: 0;
+}
+
+.markdown code,
+.markdown pre {
+  font-family: monaco, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 1em;
+}
+
+.markdown pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  overflow: auto;
+}
+
+.markdown .markdown-body > *:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown .markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown .anchor:focus {
+  outline: none;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 2px solid #eee;
+}
+
+.markdown h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 2px solid #eee;
+}
+
+.markdown h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown h4 {
+  font-size: 1.25em;
+}
+
+.markdown h5 {
+  font-size: 1em;
+}
+
+.markdown h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown p,
+.markdown blockquote,
+.markdown ul,
+.markdown ol,
+.markdown dl,
+.markdown table,
+.markdown pre {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.markdown hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 2em;
+}
+
+.markdown ol ol,
+.markdown ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown li > p {
+  margin-top: 16px;
+}
+
+.markdown dl {
+  padding: 0;
+}
+
+.markdown dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown blockquote {
+  font-size: inherit;
+  padding: 0 15px;
+  color: #7F8C8D;
+  border-left: 4px solid #ecf0f1;
+}
+
+.markdown blockquote > :first-child {
+  margin-top: 20;
+}
+
+.markdown blockquote > :last-child {
+  margin-bottom: 20;
+}
+
+.markdown blockquote {
+  margin: 20px 0 !important;
+  background-color: rgba(102, 128, 153, 0.03);
+  padding: 6px 8px;
+}
+
+.markdown table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  margin: 25px 0;
+}
+
+.markdown table th {
+  font-weight: bold;
+}
+
+.markdown table th,
+.markdown table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown img {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.markdown img:not(.emoji) {
+  border: 1px solid #ddd;
+  max-width: 95%;
+  box-shadow: 0 0 30px #ccc;
+  -moz-box-shadow: 0 0 30px #ccc;
+  -webkit-box-shadow: 0 0 30px #ccc;
+  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-left: 2%;
+}
+
+.markdown code {
+  margin: 0;
+  color: #C2627B;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 3px;
+  background-color: #ECF0F1;
+  max-width: 740px;
+  overflow-x: auto;
+}
+
+.markdown code:before,
+.markdown code:after {
+  letter-spacing: -0.2em;
+  content: "\A0";
+}
+
+.markdown pre > code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+  color: #E6E8D3;
+}
+
+.markdown .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown .highlight pre,
+.markdown pre {
+  padding: 14px;
+  overflow: auto;
+  line-height: 1.45;
+  background-color: #4e4e4e;
+  border-radius: 3px;
+  color: #fff;
+  border: none;
+}
+
+.markdown .highlight pre {
+  margin-bottom: 0;
+}
+
+.markdown pre {
+  word-wrap: normal;
+}
+
+.markdown pre code {
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown pre code:before,
+.markdown pre code:after {
+  content: normal;
 }
 
 /* universal */
@@ -16437,7 +16934,9 @@ body {
   font-family: Helvetica, Arial, PingFang SC, Noto Sans, Roboto, Microsoft Yahei, sans-serif;
   font-size: 14px;
   color: #636b6f;
-  background: #f0f2f5;
+  background: #f2f5f6;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
 }
 
 body,
@@ -16449,17 +16948,63 @@ h5 {
   font-family: Lato, Helvetica Neue, Arial, Helvetica, sans-serif;
 }
 
+a,
+a:visited {
+  text-decoration: none;
+  outline: 0;
+  color: #444;
+}
+
+a:hover {
+  text-decoration: none;
+  outline: 0;
+  color: #ff5d23;
+}
+
+.badge {
+  padding: 0.4em 0.9em;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.75em;
+  display: inline-block;
+  margin-bottom: 3px;
+  padding-top: 5px;
+}
+
+.badge-danger {
+  background-color: #f5593d;
+}
+
+.btn-success {
+  background-color: #6bd098;
+  border-color: #6bd098;
+}
+
 body > h1 {
   font-size: 20px;
   font-weight: 400;
 }
 
-.clearfix {
-  clear: both;
+.card {
+  border-radius: 12px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  background-color: #FFFFFF;
+  color: #333333;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  border: 0 none;
+  transition: transform 300ms cubic-bezier(0.34, 2, 0.6, 1), box-shadow 200ms ease;
 }
 
-.card {
-  border: 1px solid #e3eaef;
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1300px;
+  }
+}
+
+.clearfix {
+  clear: both;
 }
 
 /* header */
@@ -16468,10 +17013,40 @@ body > h1 {
   border-color: #e7e7e7;
   background-color: #fff;
   box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-  border-top: 4px solid #00b5ad;
-  border-bottom: 1px solid #e8e8e8;
   margin-bottom: 40px;
   margin-top: 0px;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu > a,
+.navbar-ul > li > a {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-submenu a::after {
+  position: absolute;
+  right: 3px;
+  top: 40%;
+}
+
+.dropdown-submenu:hover > .dropdown-menu,
+.dropdown-submenu:focus > .dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute !important;
+}
+
+@media (max-width: 992px) {
+  .dropdown-menu {
+    width: 50%;
+  }
+
+  .dropdown-menu .dropdown-submenu {
+    width: auto;
+  }
 }
 
 /* 注册验证码 */
@@ -16488,11 +17063,6 @@ body > h1 {
 html {
   position: relative;
   min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
 }
 
 .footer {
@@ -16529,12 +17099,6 @@ body {
   font-size: 0.9em;
 }
 
-.topics-index-page .topic-list a,
-.categories-show-page .topic-list a,
-.root-page .topic-list a {
-  color: #444444;
-}
-
 .topics-index-page .topic-list .meta,
 .categories-show-page .topic-list .meta,
 .root-page .topic-list .meta {
@@ -16549,9 +17113,13 @@ body {
 }
 
 .topics-index-page .topic-list .badge,
+.topics-index-page .topic-list .badge-danger,
 .categories-show-page .topic-list .badge,
-.root-page .topic-list .badge {
-  background-color: #d8d8d8;
+.categories-show-page .topic-list .badge-danger,
+.root-page .topic-list .badge,
+.root-page .topic-list .badge-danger {
+  position: relative;
+  top: -2px;
 }
 
 .topics-index-page .topic-list hr,
@@ -16561,6 +17129,16 @@ body {
   margin-bottom: 12px;
   border: 0;
   border-top: 1px solid #dcebf5;
+}
+
+.topics-index-page .topic-list .nav-pills .nav-link.active,
+.topics-index-page .topic-list .nav-pills .show > .nav-link,
+.categories-show-page .topic-list .nav-pills .nav-link.active,
+.categories-show-page .topic-list .nav-pills .show > .nav-link,
+.root-page .topic-list .nav-pills .nav-link.active,
+.root-page .topic-list .nav-pills .show > .nav-link {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.95);
 }
 
 /* 话题列表与 footer */
@@ -16575,7 +17153,7 @@ body {
   max-width: 100%;
 }
 
-/* Topic Show Page */
+/* 文章页 */
 
 .simditor-body,
 .topic-body {
@@ -17049,48 +17627,6 @@ body {
 
 /* 文章 meta */
 
-.book-article-meta a {
-  color: #adb1af;
-  margin: 22px 0;
-}
-
-.book-article-meta .divider {
-  color: #cacaca;
-  margin: 0 5px;
-}
-
-/* 文章 meta 下的线 */
-
-.ui.divider:not(.vertical):not(.horizontal) {
-  border-top: 1px solid #d3e0e9;
-  border-bottom: 1px solid rgba(211, 224, 233, 0.15);
-}
-
-.ui.divider {
-  text-transform: none;
-}
-
-.ui.divider {
-  color: #777;
-  font-weight: 400;
-}
-
-.ui.divider {
-  font-size: 1rem;
-}
-
-.ui.divider {
-  margin: 1rem 0;
-  line-height: 1;
-  height: 0;
-  letter-spacing: 0.05em;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
 /* 左浮动 */
 
 .pull-left {
@@ -17098,20 +17634,6 @@ body {
 }
 
 /*header 头 选中鼠标移入*/
-
-#navbarSupportedContent li.active {
-  background: rgba(0, 0, 0, 0.05);
-  min-height: 100%;
-  border-radius: 0.28571429rem;
-  color: rgba(0, 0, 0, 0.95);
-}
-
-#navbarSupportedContent li:hover {
-  background: rgba(0, 0, 0, 0.05);
-  min-height: 100%;
-  border-radius: 0.28571429rem;
-  color: rgba(0, 0, 0, 0.95);
-}
 
 .topic-list-right {
   overflow: hidden;

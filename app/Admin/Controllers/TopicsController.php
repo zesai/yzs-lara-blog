@@ -37,6 +37,8 @@ class TopicsController extends AdminController
     {
         $grid = new Grid(new Topic);
 
+        $grid->model()->with(['category','user']);
+
         $grid->column('id', __('Id'));
         $grid->column('title', '标题')->display(function ($title) {
             return "<a href='". $this->link() ."' target='_blank'>$title</a>";
@@ -101,7 +103,13 @@ class TopicsController extends AdminController
 
         $form->text('title', __('标题'));
         $form->select('category_id', __('分类'))
-            ->options((new Category())->getNameArray());
+            ->options(function ($id) {
+                $category = Category::find($id);
+                if ($category) {
+                    return [$category->id => $category->full_name];
+                }
+            })
+            ->ajax('/admin/api/categories?is_directory=0');
         $form->image('cover', __('封面图'))
             ->move(function () {
                 if (!empty(env('QINIUYUN'))) {

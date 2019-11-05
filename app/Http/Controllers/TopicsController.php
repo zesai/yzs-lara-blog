@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Auth;
