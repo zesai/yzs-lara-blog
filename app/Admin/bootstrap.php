@@ -18,7 +18,7 @@
  *
  */
 
-//Encore\Admin\Form::forget(['map', 'editor']);
+Encore\Admin\Form::forget(['map']);
 
 use App\Admin\Extensions\Simplemde;
 use Encore\Admin\Form;

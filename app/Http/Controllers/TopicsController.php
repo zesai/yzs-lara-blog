@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\TopicViewEvent;
 use App\Handlers\ImageUploadHandler;
 use App\Markdown\Markdown;
 use App\Markdown\Parser;
@@ -9,11 +10,10 @@ use App\Models\Category;
 use App\Models\Link;
 use App\Models\Topic;
 use App\Models\User;
-use App\Services\CategoryService;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Auth;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class TopicsController extends Controller
 {
@@ -53,7 +53,11 @@ class TopicsController extends Controller
             return redirect($topic->link(), 301);
         }
 
+        //监听浏览文章 增加浏览量
+        event(new TopicViewEvent($topic, $request->ip()));
+
         $topic->body = $markdown->toHtml($topic->body);
+
         return view('topics.show', compact('topic') );
     }
 

@@ -7,7 +7,7 @@ use Encore\Admin\Form\Field;
 
 class Simplemde extends Field
 {
-    protected $view = 'admin::form.editor';
+    protected $view = 'admin.simplemde_editor';
 
     protected static $css = [
         '/simplemde/dist/simplemde.min.css',
@@ -29,7 +29,6 @@ class Simplemde extends Field
                 autosave: {
                     enabled: true,
                     delay: 5000,
-                    unique_id: "editor01",
                 },
                 spellChecker: false,
             });

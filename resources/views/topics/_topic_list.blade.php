@@ -31,7 +31,7 @@
                     <span class="divider"> &nbsp; 发布于 &nbsp; </span>
                     <span>{{ $topic->updated_at->diffForHumans() }}</span>
                     <span class="divider"> &nbsp;&nbsp;/&nbsp;&nbsp; </span>
-                    <span class="text-mute new-tooltip" data-toggle="tooltip" data-placement="bottom" title="阅读数"><i class="fa fa-eye" aria-hidden="true"></i> 609</span>
+                    <span class="text-mute new-tooltip" data-toggle="tooltip" data-placement="bottom" title="阅读数"><i class="fa fa-eye" aria-hidden="true"></i> {{ $topic->view_count }}</span>
                     <span class="divider"> &nbsp;&nbsp;/&nbsp;&nbsp; </span>
                     <span class="text-mute new-tooltip" data-toggle="tooltip" data-placement="bottom" title="评论数: {{ $topic->reply_count }}"><i class="far fa-comment" aria-hidden="true"></i> {{ $topic->reply_count }}</span>
                   </small>

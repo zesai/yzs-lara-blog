@@ -40,7 +40,7 @@
                             </span>
             </a>
             <span class="divider">/</span>
-            <span class="text-mute"><i class="fa fa-eye" aria-hidden="true"></i> 609</span>
+            <span class="text-mute"><i class="fa fa-eye" aria-hidden="true"></i> {{ $topic->view_count }}</span>
             <span class="divider">/</span>
             <span class="text-mute"><i class="far fa-comment" aria-hidden="true"></i>
                         {{ $topic->reply_count }}</span>
