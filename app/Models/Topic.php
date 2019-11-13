@@ -23,6 +23,11 @@ class Topic extends Model
         return $this->hasMany(Reply::class);
     }
 
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'topics_tags')->withTimestamps();
+    }
+
     /**
      * 本地作用域 使用scope开头，调用时 withOrder()即可
      * @param $query [查询构造器(默认传参)]

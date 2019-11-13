@@ -40,6 +40,8 @@ Route::get('topics', 'TopicsController@index')->name('topics.index');
 Route::get('topics/{topic}/{slug?}', 'TopicsController@show')->name('topics.show');
 //分类路由
 Route::resource('categories', 'CategoriesController', ['only' => ['show']]);
+//标签路由
+Route::resource('tags', 'TagsController', ['only' => ['show']]);
 //编辑器上传图片
 Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 //话题回复

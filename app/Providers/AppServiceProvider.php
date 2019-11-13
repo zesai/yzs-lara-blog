@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Link;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -34,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
 		\App\Models\Topic::observe(\App\Observers\TopicObserver::class);
 		\App\Models\Link::observe(\App\Observers\LinkObserver::class);
 		\App\Models\Category::observe(\App\Observers\CategoryObserver::class);
+		\App\Models\Tag::observe(\App\Observers\TagObserver::class);
 
 		/*
 		 * 模版渲染
@@ -41,6 +45,15 @@ class AppServiceProvider extends ServiceProvider
         // 当 Laravel 渲染 products.index 和 products.show 模板时，就会使用 CategoryTreeComposer 这个来注入类目树变量
         // 同时 Laravel 还支持通配符，例如 products.* 即代表当渲染 products 目录下的模板时都执行这个 ViewComposer
         \View::composer(['topics.index', 'topics.show', 'users.show', 'users.edit'], \App\Http\ViewComposers\CategoryTreeComposer::class);
+
+
+        view()->composer(['topics._sidebar'],function ($view){
+            $tags = Tag::select('id','name')->withCount('topics')->get();
+            $active_users = (new User())->getActiveUsers();
+            $links = (new Link())->getAllCached();
+            $assgin = compact('tags','active_users', 'links');
+            $view->with($assgin);
+        });
 
         /*
          * 日期

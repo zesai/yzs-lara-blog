@@ -30,15 +30,11 @@ class TopicsController extends Controller
      * @param User $user
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-	public function index(Request $request, Topic $topic, User $user, Link $link)
+	public function index(Request $request, Topic $topic)
 	{
         $topics = $topic->withOrder($request->order)->paginate(20);
 
-        //获取活跃用户
-        $active_users = $user->getActiveUsers();
-        //获取推荐资源
-        $links = $link->getAllCached();
-		return view('topics.index', compact('topics', 'active_users', 'links'));
+		return view('topics.index', compact('topics'));
 	}
 
     /**

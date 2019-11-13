@@ -3,12 +3,14 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Category;
+use App\Models\Tag;
 use App\Models\Topic;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
+use Illuminate\Http\Request;
 
 class TopicsController extends AdminController
 {
@@ -56,6 +58,12 @@ class TopicsController extends AdminController
 
         $grid->column('category.name', __('分类'))->display(function ($name) {
             return "<span class='label label-default'>$name</span>";
+        });
+        $grid->column('tags', __('Tags name'))->display(function ($tags) {
+            $tags = array_map(function ($tag){
+                return "<span class='label label-success'>{$tag['name']}</span>";
+            },$tags);
+            return join('<br />', $tags);
         });
         $grid->column('reply_count', __('回复数'));
         $grid->column('view_count', __('查看数'));
@@ -110,6 +118,8 @@ class TopicsController extends AdminController
                 }
             })
             ->ajax('/admin/api/categories?is_directory=0');
+        $form->multipleSelect('tags', __('Tags name'))
+            ->options(Tag::all()->pluck('name', 'id'));
         $form->image('cover', __('封面图'))
             ->move(function () {
                 if (!empty(env('QINIUYUN'))) {
@@ -121,6 +131,8 @@ class TopicsController extends AdminController
         $form->editor('body', __('文章内容'));
         $form->hidden('user_id')->default(1);
 
+
         return $form;
     }
+
 }

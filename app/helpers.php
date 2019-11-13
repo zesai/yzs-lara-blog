@@ -1,10 +1,13 @@
 <?php
 
-//将当前请求的路由名称转换为 CSS 类名称
-function route_class()
-{
-    return str_replace('.','-',\Illuminate\Support\Facades\Route::currentRouteName());
+if (!function_exists('route_class')) {
+    //将当前请求的路由名称转换为 CSS 类名称
+    function route_class()
+    {
+        return str_replace('.','-',\Illuminate\Support\Facades\Route::currentRouteName());
+    }
 }
+
 //判断分类路由是否选中状态
 function category_nav_active($category_id)
 {
@@ -51,4 +54,13 @@ function model_plural_name($model)
 
     // 获取子串的复数形式，例如：传参 `user` 会得到 `users`
     return str_plural($snake_case_name);
+}
+
+if (!function_exists('is_url')) {
+
+    function is_url(string $str)
+    {
+        return preg_match("/^http(s)?:\\/\\/.+/", $str);
+    }
+
 }

@@ -11,9 +11,15 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
+    //文章
     $router->resource('topics', TopicsController::class);
+    //友情链接
     $router->resource('friend_links', FriendLinksController::class);
+    //分类
     $router->resource('categories', CategoriesController::class);
     $router->get('api/categories', 'CategoriesController@apiIndex');
+
+    //标签
+    $router->resource('tags', TagsController::class);
 
 });

@@ -12,6 +12,11 @@ use App\Models\Topic;
 class TopicObserver
 {
 
+    public function creating(Topic $topic)
+    {
+
+    }
+
     public function saving(Topic $topic)
     {
         // XSS 过滤
@@ -20,7 +25,7 @@ class TopicObserver
         // 生成话题摘录
         $topic->excerpt = make_excerpt($topic->body);
 
-        if (env('QINIUYUN')) {
+        if (!empty($topic->cover) && !is_url($topic->cover)){
             $topic->cover = 'http://' . env('QINIUYUN_DOMAIN_DEFAULT') . '/' . $topic->cover;
         }
 

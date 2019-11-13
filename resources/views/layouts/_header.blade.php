@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-static-top pt-3 pb-3">
     <div class="container">
         <!-- Branding Image -->
         <a class="navbar-brand " href="{{ url('/') }}">
             一叶轻舟
         </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse ml-5" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav navbar-ul navbar-right">
                 <!-- 顶部类目菜单开始 -->
@@ -16,6 +16,12 @@
                 @endif
                 <!-- 顶部类目菜单结束 -->
             </ul>
+          <form class="form-inline pull-right ml-5" role="search" action="/Search/SearchList" method="get" target="_blank">
+            <div class="form-group">
+              <input name="KeyWord" class="form-control mr-sm-2" type="text" placeholder="全站搜索">
+            </div>
+            <button class="btn my-2 my-sm-0" type="submit" style="background:none; margin-left:-3rem; color:#ff9d00;" ><i class="fa fa-search" ></i></button>
+          </form>
             <!-- Right Side Of Navbar -->
 {{--            <ul class="navbar-nav navbar-right">--}}
 {{--                <!-- Authentication Links -->--}}
@@ -61,6 +67,7 @@
 {{--                @endguest--}}
 {{--            </ul>--}}
         </div>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
