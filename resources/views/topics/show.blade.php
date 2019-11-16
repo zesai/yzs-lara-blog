@@ -144,7 +144,6 @@
           $('a[title="file"]').fluidbox({
               stackIndex:990,
           });
-          $('.ui.checkbox').checkbox();
           //文章标题栏
           // $(".topic-body h2, .topic-body h3, .topic-body h4, .topic-body h5, .topic-body h6").each(function(i,item){
           //     // var tag = $(item).get(0).localName;
