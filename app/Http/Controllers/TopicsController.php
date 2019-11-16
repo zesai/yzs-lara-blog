@@ -32,9 +32,17 @@ class TopicsController extends Controller
      */
 	public function index(Request $request, Topic $topic)
 	{
-        $topics = $topic->withOrder($request->order)->paginate(20);
+	    $search = '';
+        $topics = $topic->with(['category', 'tags'])->withOrder($request->order);
+        if ($request->has('q')) {
+            $search = $request->get('q');
+            $request->flush('q');
+            $topics->where('title', 'like', "%{$search}%")
+                ->orWhere('body', 'like', "%{$search}%");
+        }
+        $topics = $topics->paginate(20);
 
-		return view('topics.index', compact('topics'));
+		return view('topics.index', compact('topics','search'));
 	}
 
     /**

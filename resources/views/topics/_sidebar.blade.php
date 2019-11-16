@@ -1,20 +1,8 @@
 <div class="card ">
     <div class="card-body text-center">
-{{--        <a href="{{ route('topics.create') }}" class="btn btn-success btn-block" aria-label="Left Align">--}}
-{{--            <i class="fas fa-pencil-alt mr-2"></i>  新建帖子--}}
-{{--        </a>--}}
         吾生也有涯 而知也无涯
     </div>
 </div>
-
-{{--<div class="card bg-dark text-white">--}}
-{{--  <img class="card-img" src="/下载.png" alt="Card image">--}}
-{{--  <div class="card-img-overlay">--}}
-{{--    <h5 class="card-title" style="color:#555299">Card title</h5>--}}
-{{--    <p class="card-text" style="color:#555299">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>--}}
-{{--    <p class="card-text" style="color:#555299">Last updated 3 mins ago</p>--}}
-{{--  </div>--}}
-{{--</div>--}}
 
 @if (count($active_users))
   <div class="card mt-4">
@@ -70,17 +58,27 @@
   </div>
 @endif
 
-<div class="card mt-4 comments">
+@if(count($replies))
+<div class="card mt-4 sidebar-comments">
     <div class="card-title mt-3 mb-0 ml-3 text-muted">
-      <h5><span style="border-bottom: 3px solid #f5593d">最新评论</span></h5>
+        <h5><span style="border-bottom: 3px solid #f5593d">最新评论</span></h5>
     </div>
     <div class="card-body pt-2">
-      <ul>
-        <li>123</li>
-        <li>123</li>
-        <li>123</li>
+      @foreach($replies as $reply)
+      <ul class="new-comment" @if($loop->first) style="border:none;"@endif>
+        <img class="head-img bjy-lazyload" src="{{$reply->user->avatar}}" alt="{{$reply->user->name}}">
+        <li class="nickname">
+          {{$reply->user->name}}<span>{{ $reply->created_at->diffForHumans() }}</span>
+        </li>
+        <li class="topic-title">
+          评论<a href="{{$reply->topic->link()}}" target="_blank">{{$reply->topic->title}}</a>
+        </li>
+        <li class="content">
+          {{$reply->content}}
+        </li>
       </ul>
+      @endforeach
     </div>
-  </div>
-
+</div>
+@endif
 

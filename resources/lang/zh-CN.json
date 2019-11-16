@@ -5,5 +5,9 @@
     "Url_Address"   : "网站地址",
     "Created at"    : "创建时间",
     "Updated at"    : "更新时间",
-    "Tags name"     : "标签名称"
+    "Tags name"     : "标签名称",
+    "Link"          : "链接",
+    "Topic name"    : "文章名称",
+    "User name"     : "用户名",
+    "Reply content" : "评论内容"
 }

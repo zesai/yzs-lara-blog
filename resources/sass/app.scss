@@ -48,11 +48,6 @@ a:hover{
 ul li {
   list-style-type:none;
 }
-//重写按钮buttun
-.btn-success {
-  background-color: #6bd098;
-  border-color: #6bd098;
-}
 
 body > h1 {
   font-size: 20px;
@@ -400,6 +395,7 @@ body > h1 {
 
 /* 侧边栏 */
 .sidebar {
+  overflow: hidden;
   .card .card-title span {
     border-bottom: 3px solid #f5593d;
   }
@@ -465,6 +461,50 @@ body > h1 {
             border-radius: 0;
           }
         }
+      }
+    }
+  }
+
+  .sidebar-comments {
+    .new-comment {
+      padding: 3px 0 3px 40px;
+      width: 100%;
+      position: relative;
+      border-top: 1px solid #dcdcdc;
+      li {
+        white-space:nowrap; //强制不换行
+        overflow:hidden; //自动隐藏文字
+        text-overflow: ellipsis; //文字隐藏后添加省略号
+      }
+      .head-img {
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        left: 0;
+        top: 5px;
+      }
+      .nickname {
+        font-size: 13px;
+        overflow: hidden;
+        color: #555;
+        span {
+          color: #999;
+          float: right;
+        }
+      }
+      .topic-title {
+        font-size: 13px;
+        color: #999;
+        a {
+          color: #555;
+          &:hover {
+            color: #ff5d23;
+          }
+        }
+      }
+      .content {
+        color: #999;
+        font-size: 12px;
       }
     }
   }

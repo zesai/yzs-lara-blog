@@ -13,6 +13,11 @@
           标签 {{ $tag->name }} ：{{ $tag->description }}
         </div>
       @endif
+      @if (!is_null($search))
+        <div class="alert alert-info" role="alert">
+          关键词 {{ $search }} ：{{ $search }}相关文章
+        </div>
+      @endif
       <div class="card">
 
         @if(!isset($tag))

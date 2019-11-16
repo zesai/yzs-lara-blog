@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Link;
+use App\Models\Reply;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\ServiceProvider;
@@ -44,14 +45,22 @@ class AppServiceProvider extends ServiceProvider
 		 */
         // 当 Laravel 渲染 products.index 和 products.show 模板时，就会使用 CategoryTreeComposer 这个来注入类目树变量
         // 同时 Laravel 还支持通配符，例如 products.* 即代表当渲染 products 目录下的模板时都执行这个 ViewComposer
-        \View::composer(['topics.index', 'topics.show', 'users.show', 'users.edit'], \App\Http\ViewComposers\CategoryTreeComposer::class);
+        \View::composer([
+            'topics.index',
+            'auth.*',
+            'topics.show',
+            'users.show',
+            'users.edit',
+        ], \App\Http\ViewComposers\CategoryTreeComposer::class);
 
 
         view()->composer(['topics._sidebar'],function ($view){
             $tags = Tag::select('id','name')->withCount('topics')->get();
             $active_users = (new User())->getActiveUsers();
             $links = (new Link())->getAllCached();
-            $assgin = compact('tags','active_users', 'links');
+            $replies = Reply::with(['topic','user'])
+                ->orderBy('created_at','desc')->limit(10)->get();
+            $assgin = compact('tags','active_users', 'links', 'replies');
             $view->with($assgin);
         });
 

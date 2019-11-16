@@ -22,4 +22,10 @@ Route::group([
     //标签
     $router->resource('tags', TagsController::class);
 
+    //推荐文章
+    $router->resource('links', LinksController::class);
+
+    //评论
+    $router->resource('replies', RepliesController::class);
+
 });

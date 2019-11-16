@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Models\Reply;
 use App\Notifications\TopicReplied;
+use zgldh\QiniuStorage\Plugins\UploadToken;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored

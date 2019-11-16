@@ -16970,11 +16970,6 @@ ul li {
   list-style-type: none;
 }
 
-.btn-success {
-  background-color: #6bd098;
-  border-color: #6bd098;
-}
-
 body > h1 {
   font-size: 20px;
   font-weight: 400;
@@ -17774,6 +17769,10 @@ body > h1 {
 
 /* 侧边栏 */
 
+.sidebar {
+  overflow: hidden;
+}
+
 .sidebar .card .card-title span {
   border-bottom: 3px solid #f5593d;
 }
@@ -17835,6 +17834,56 @@ body > h1 {
 
 .sidebar .tags .tag-all-name .tag-name a:hover {
   border-radius: 0;
+}
+
+.sidebar .sidebar-comments .new-comment {
+  padding: 3px 0 3px 40px;
+  width: 100%;
+  position: relative;
+  border-top: 1px solid #dcdcdc;
+}
+
+.sidebar .sidebar-comments .new-comment li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar .sidebar-comments .new-comment .head-img {
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+.sidebar .sidebar-comments .new-comment .nickname {
+  font-size: 13px;
+  overflow: hidden;
+  color: #555;
+}
+
+.sidebar .sidebar-comments .new-comment .nickname span {
+  color: #999;
+  float: right;
+}
+
+.sidebar .sidebar-comments .new-comment .topic-title {
+  font-size: 13px;
+  color: #999;
+}
+
+.sidebar .sidebar-comments .new-comment .topic-title a {
+  color: #555;
+}
+
+.sidebar .sidebar-comments .new-comment .topic-title a:hover {
+  color: #ff5d23;
+}
+
+.sidebar .sidebar-comments .new-comment .content {
+  color: #999;
+  font-size: 12px;
 }
 
 /* 页脚footer */

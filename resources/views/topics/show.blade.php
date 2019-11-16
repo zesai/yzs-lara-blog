@@ -14,18 +14,18 @@
   <div class="row">
 
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 mt-0 topic-content">
-      <ul class="breadcrumb mb-0 mt-0" style="background: none">
-        <li><a href="/">首页</a> <span class="divider ml-2 mr-2">/</span></li>
-        <li><a href="{{ route('categories.show', $topic->category->id) }}">{{ $topic->category->name }}</a> <span class="divider ml-2 mr-2">/</span></li>
-        <li class="active">{{ $topic->title }}</li>
-      </ul>
+
 
       <div class="card topic-card">
+        <ul class="breadcrumb mb-2 mt-0" style="background: none">
+          <li><a href="/">首页</a> <span class="divider ml-2 mr-2">/</span></li>
+          <li><a href="{{ route('categories.show', $topic->category->id) }}">{{ $topic->category->name }}</a></li>
+        </ul>
         <div class="card-body pt-0">
 
           <h1 class="mb-3">
             <div class="pull-left">
-              <i class="fa fa-file-text" aria-hidden="true"></i>
+              <i aria-hidden="true" class="fa fa-envelope-open-text"></i>
               <span style="line-height: 34px;">{{ $topic->title }}</span>
             </div>
             <div class="clearfix"></div>
