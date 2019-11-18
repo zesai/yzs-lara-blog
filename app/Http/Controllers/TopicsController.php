@@ -57,12 +57,25 @@ class TopicsController extends Controller
             return redirect($topic->link(), 301);
         }
 
+        // 获取上一篇
+        $prev = Topic::select('id', 'title')
+            ->orderBy('created_at', 'desc')
+            ->where('id', '<', $topic->id)
+            ->limit(1)
+            ->first();
+        // 获取下一篇
+        $next = Topic::select('id', 'title')
+            ->orderBy('created_at', 'asc')
+            ->where('id', '>', $topic->id)
+            ->limit(1)
+            ->first();
+
         //监听浏览文章 增加浏览量
         event(new TopicViewEvent($topic, $request->ip()));
 
         $topic->body = $markdown->toHtml($topic->body);
 
-        return view('topics.show', compact('topic') );
+        return view('topics.show', compact('topic','prev', 'next') );
     }
 
     /**

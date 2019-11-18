@@ -96,10 +96,20 @@
       <div class="entry-navigation">
         <nav class="article-nav">
           <span class="article-nav-prev">上一篇<br>
-            <a href="https://www.frbkw.com/1913/" rel="prev">使用Dreamweaver做地图热点且删除热点边框</a>
+            @if(is_null($prev))
+              <span>{{ __('No More Article') }}</span>
+            @else
+              <a href="{{ $prev->link() }}" rel="prev">{{ $prev->title }}</a>
+            @endif
+
           </span>
           <span class="article-nav-next">下一篇<br>
-            <a href="https://www.frbkw.com/1938/" rel="next">uni-app原生导航配置顶部自定义按钮以及图标</a>
+            @if(is_null($next))
+              <span>{{ __('No More Article') }}</span>
+            @else
+              <a href="{{ $next->link() }}" rel="next">{{ $next->title }}</a>
+            @endif
+
           </span>
         </nav>
       </div>
