@@ -2,7 +2,10 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+
+@import 'bootstrap';
+//动画
+@import '~animate.css/animate.css';
 
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
@@ -23,27 +26,27 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-
-body, h1, h2, h3, h4, h5 {
-  font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-a,
-a:visited {
-  text-decoration: none;
-  outline: 0;
-  color: #444;
-}
-
-a:hover{
-  text-decoration: none;
-  outline: 0;
-  color: #ff5d23; }
+//
+//body, h1, h2, h3, h4, h5 {
+//  font-family: Lato,Helvetica Neue,Arial,Helvetica,sans-serif;
+//}
+//
+//html {
+//  position: relative;
+//  min-height: 100%;
+//}
+//
+//a,
+//a:visited {
+//  text-decoration: none;
+//  outline: 0;
+//  color: #444;
+//}
+//
+//a:hover{
+//  text-decoration: none;
+//  outline: 0;
+//  color: #ff5d23; }
 
 ul li {
   list-style-type:none;
@@ -73,60 +76,16 @@ body > h1 {
   transition: ALL 0.5s ease;
 }
 
-@media (min-width: 1200px){
-  .container {
-    max-width: 1300px;
-  }
-}
+//@media (min-width: 1200px){
+//  .container {
+//    max-width: 1300px;
+//  }
+//}
 
 .clearfix {
   clear: both;
 }
 
-
-/* header */
-
-.navbar-static-top {
-  border-color: #e7e7e7;
-  background-color: #fff;
-  box-shadow: 0px 1px 11px 2px rgba(42, 42, 42, 0.1);
-  //border-top: 4px solid #00b5ad;
-  //border-bottom: 1px solid #e8e8e8;
-  margin-bottom: 35px;
-  margin-top: 0px;
-}
-
-.dropdown-submenu {
-  position: relative;
-
-}
-.dropdown-submenu > a, .navbar-ul > li > a{
-  color: rgba(0, 0, 0, 0.5);
-}
-.dropdown-submenu a::after {
-  //transform: rotate(-90deg);
-  position: absolute;
-  right: 3px;
-  top: 40%;
-
-}
-
-.dropdown-submenu:hover > .dropdown-menu, .dropdown-submenu:focus > .dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  position: absolute !important;
-  //margin-top: -30px;
-  //left: 100%;
-}
-
-@media (max-width: 992px) {
-  .dropdown-menu {
-    width: 50%;
-  }
-  .dropdown-menu .dropdown-submenu {
-    width: auto;
-  }
-}
 
 /* 注册验证码 */
 .register-page {
