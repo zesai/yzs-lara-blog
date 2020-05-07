@@ -2,57 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c9b7f2a-24f6-400b-95d7-51065ca536c3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/css/css/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/css/bootsnav.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/css/color.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/css/htmleaf-demo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/css/overwrite.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/font-awesome.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/fontawesome-webfont.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/FontAwesome/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/icomoon.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/icomoon.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/icomoon.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/fonts/fonts/icomoon.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/affiliates/kallem.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/bg/brick-wall-dark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/bg/home2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/brand/logo-black.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/brand/logo-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/thumb/thumb01.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/thumb/thumb02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/images/thumb/thumb03.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/bootsnav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/components/ExampleComponent.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/html5shiv.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/ie8-responsive-file-warning.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/jquery-1.11.0.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/js/respond.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/loader.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/loader2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_bootstrap.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/bootstrap.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/下载.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/assets/css/vendor/Markdown.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/assets/css/vendor/Markdown.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/_category_item.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/_category_item.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/_header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/_header.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/topics/_topic_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/topics/_topic_list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TopicsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TopicsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/zh-CN.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/zh-CN.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/topics/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/topics/show.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,15 +172,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/lang/vendor/encore" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/js/js" />
-      <recent name="$PROJECT_DIR$/resources/sass" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -302,22 +251,7 @@
       <workItem from="1573131767706" duration="8904000" />
       <workItem from="1573190120672" duration="50145000" />
       <workItem from="1573720634094" duration="3334000" />
-      <workItem from="1573901613882" duration="4961000" />
-      <workItem from="1574073541435" duration="77000" />
-      <workItem from="1574073630913" duration="2617000" />
-      <workItem from="1574524053542" duration="79000" />
-      <workItem from="1575807568949" duration="89000" />
-      <workItem from="1575807672346" duration="5000" />
-      <workItem from="1577853000777" duration="8360000" />
-      <workItem from="1577974758224" duration="5607000" />
-      <workItem from="1578409571798" duration="187000" />
-      <workItem from="1578409888269" duration="256000" />
-      <workItem from="1578410174683" duration="1298000" />
-      <workItem from="1578825289656" duration="529000" />
-      <workItem from="1578843741544" duration="1182000" />
-      <workItem from="1580615895713" duration="488000" />
-      <workItem from="1581942272069" duration="210000" />
-      <workItem from="1588862686665" duration="307000" />
+      <workItem from="1573901613882" duration="3577000" />
     </task>
     <servers />
   </component>

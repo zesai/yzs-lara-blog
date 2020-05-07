@@ -16,10 +16,7 @@
           <div class="row no-gutters">
             <div class="col-md-4">
               <a href="{{ $topic->link() }}">
-                <img class="media-object img-thumbnail mr-3"
-                     src="loader.gif"
-                     style="width:100%;height:178.33px;"
-                     data-src="{{ $topic->cover }}" title="{{ $topic->user->name }}">
+                <img class="media-object img-thumbnail mr-3" style="width:100%;height:178.33px;" src="{{ $topic->cover }}" title="{{ $topic->user->name }}">
               </a>
             </div>
             <div class="col-md-8">
