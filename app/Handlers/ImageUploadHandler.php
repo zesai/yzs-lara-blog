@@ -3,6 +3,7 @@
 
 namespace App\Handlers;
 
+use Illuminate\Http\File;
 use Image;
 use zgldh\QiniuStorage\QiniuStorage;
 
@@ -11,6 +12,15 @@ class ImageUploadHandler
     //只允许此类后缀文件上传
     protected $allowed_ext = ['jpg','png','jpeg','gif','bmp'];
 
+    /**
+     * @param File $file
+     * @param $folder
+     * @param $file_prefix
+     * @param bool $max_width
+     * @return array|bool
+     * @author zesai
+     * @date 2020/7/15
+     */
     public function save($file, $folder, $file_prefix, $max_width = false)
     {
 

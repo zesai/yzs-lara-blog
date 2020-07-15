@@ -4,9 +4,6 @@ namespace App\Listeners;
 
 use App\Events\TopicViewEvent;
 use App\Models\Topic;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Cache;
 use Illuminate\Support\Facades\Redis;
 
 class TopicViewEventListeners

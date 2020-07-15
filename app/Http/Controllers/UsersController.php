@@ -5,26 +5,50 @@ namespace App\Http\Controllers;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use \Illuminate\View\View;
 
 class UsersController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth',['except'=>['show']]);
     }
 
+    /**
+     * @param User $user
+     * @return Factory|View
+     * @author zesai
+     * @date 2020/7/15
+     */
     public function show(User $user)
     {
         return view('users.show',compact('user'));
     }
 
+    /**
+     * @param User $user
+     * @return Factory|View
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @author zesai
+     * @date 2020/7/15
+     */
     public function edit(User $user)
     {
         $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
+    /**
+     * @param UserRequest $Request
+     * @param User $user
+     * @param ImageUploadHandler $uploader
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @author zesai
+     * @date 2020/7/15
+     */
     public function update(UserRequest $Request, User $user, ImageUploadHandler $uploader)
     {
         $this->authorize('update', $user);

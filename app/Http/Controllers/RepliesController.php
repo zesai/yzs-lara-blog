@@ -14,6 +14,13 @@ class RepliesController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * @param ReplyRequest $request
+     * @param Reply $reply
+     * @return \Illuminate\Http\RedirectResponse
+     * @author zesai
+     * @date 2020/7/15
+     */
 	public function store(ReplyRequest $request, Reply $reply)
 	{
 		$reply->content = $request->get('content');
@@ -23,6 +30,14 @@ class RepliesController extends Controller
 		return redirect()->to($reply->topic->link())->with('success', '评论创建成功！');
 	}
 
+    /**
+     * @param Reply $reply
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws \Exception
+     * @author zesai
+     * @date 2020/7/15
+     */
 	public function destroy(Reply $reply)
 	{
 		$this->authorize('destroy', $reply);

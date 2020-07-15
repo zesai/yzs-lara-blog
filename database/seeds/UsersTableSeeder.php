@@ -37,7 +37,6 @@ class UsersTableSeeder extends Seeder
 
         //插入到数据中
         User::insert($user_array);
-
         //单独处理第一个用户
         $user = User::find(1);
         $user->name = 'zesai';
