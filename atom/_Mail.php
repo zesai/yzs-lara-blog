@@ -123,9 +123,9 @@ static public function render ( $view ,array $data =array ())
 /**
  * Send a new message using a view.
  *
- * @param  string|array|\Illuminate\Contracts\Mail\Mailable  $view
+ * @param  \Illuminate\Contracts\Mail\Mailable|string|array  $view
  * @param  array  $data
- * @param  \Closure|string  $callback
+ * @param  \Closure|string|null  $callback
  * @return void
  */
 static public function send ( $view ,array $data =array (), $callback =NULL)  
@@ -196,13 +196,13 @@ static public function laterOn ( $queue , $delay , $view )
  	 return (new Illuminate\Mail\Mailer)->laterOn($queue,$delay,$view);
 }
 /**
- * Get the view factory instance.
+ * Get the array of failed recipients.
  *
- * @return \Illuminate\Contracts\View\Factory
+ * @return array
  */
-static public function getViewFactory ()  
+static public function failures ()  
 {
- 	 return (new Illuminate\Mail\Mailer)->getViewFactory();
+ 	 return (new Illuminate\Mail\Mailer)->failures();
 }
 /**
  * Get the Swift Mailer instance.
@@ -214,13 +214,13 @@ static public function getSwiftMailer ()
  	 return (new Illuminate\Mail\Mailer)->getSwiftMailer();
 }
 /**
- * Get the array of failed recipients.
+ * Get the view factory instance.
  *
- * @return array
+ * @return \Illuminate\Contracts\View\Factory
  */
-static public function failures ()  
+static public function getViewFactory ()  
 {
- 	 return (new Illuminate\Mail\Mailer)->failures();
+ 	 return (new Illuminate\Mail\Mailer)->getViewFactory();
 }
 /**
  * Set the Swift Mailer instance.
@@ -258,13 +258,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Mail\Mailer)->mixin($mixin);
+ 	 return (new Illuminate\Mail\Mailer)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -280,7 +281,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -293,7 +294,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

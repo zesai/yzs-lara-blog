@@ -5,7 +5,7 @@ class URL {
  *
  * @param  \Illuminate\Routing\RouteCollection  $routes
  * @param  \Illuminate\Http\Request  $request
- * @param  string  $assetRoot
+ * @param  string|null  $assetRoot
  * @return void
  */
 public function __construct (Illuminate\Routing\RouteCollection $routes ,Illuminate\Http\Request $request , $assetRoot =NULL)  
@@ -111,7 +111,7 @@ static public function formatScheme ( $secure =NULL)
  *
  * @param  string  $name
  * @param  array  $parameters
- * @param  \DateTimeInterface|\DateInterval|int  $expiration
+ * @param  \DateTimeInterface|\DateInterval|int|null  $expiration
  * @param  bool  $absolute
  * @return string
  */
@@ -158,6 +158,20 @@ static public function route ( $name , $parameters =array (), $absolute =true)
  	 return (new Illuminate\Routing\UrlGenerator)->route($name,$parameters,$absolute);
 }
 /**
+ * Get the URL for a given route instance.
+ *
+ * @param  \Illuminate\Routing\Route  $route
+ * @param  mixed  $parameters
+ * @param  bool   $absolute
+ * @return string
+ *
+ * @throws \Illuminate\Routing\Exceptions\UrlGenerationException
+ */
+static public function toRoute ( $route , $parameters , $absolute )  
+{
+ 	 return (new Illuminate\Routing\UrlGenerator)->toRoute($route,$parameters,$absolute);
+}
+/**
  * Get the URL to a controller action.
  *
  * @param  string|array  $action
@@ -185,7 +199,7 @@ static public function formatParameters ( $parameters )
  * Get the base URL for the request.
  *
  * @param  string  $scheme
- * @param  string  $root
+ * @param  string|null  $root
  * @return string
  */
 static public function formatRoot ( $scheme , $root =NULL)  
@@ -357,13 +371,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Routing\UrlGenerator)->mixin($mixin);
+ 	 return (new Illuminate\Routing\UrlGenerator)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -379,7 +394,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -392,7 +407,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

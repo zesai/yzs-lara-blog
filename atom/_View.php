@@ -102,7 +102,7 @@ static public function getEngineFromPath ( $path )
  * Add a piece of shared data to the environment.
  *
  * @param  array|string  $key
- * @param  mixed  $value
+ * @param  mixed|null  $value
  * @return mixed
  */
 static public function share ( $key , $value =NULL)  
@@ -184,7 +184,7 @@ static public function replaceNamespace ( $namespace , $hints )
  *
  * @param  string    $extension
  * @param  string    $engine
- * @param  \Closure  $resolver
+ * @param  \Closure|null  $resolver
  * @return void
  */
 static public function addExtension ( $extension , $engine , $resolver =NULL)  
@@ -329,13 +329,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\View\Factory)->mixin($mixin);
+ 	 return (new Illuminate\View\Factory)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -351,7 +352,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -364,7 +365,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -383,6 +384,17 @@ static public function __call ( $method , $parameters )
 static public function startComponent ( $name ,array $data =array ())  
 {
  	 return (new Illuminate\View\Factory)->startComponent($name,$data);
+}
+/**
+ * Get the first view that actually exists from the given list, and start a component.
+ *
+ * @param  array  $names
+ * @param  array  $data
+ * @return void
+ */
+static public function startComponentFirst (array $names ,array $data =array ())  
+{
+ 	 return (new Illuminate\View\Factory)->startComponentFirst($names,$data);
 }
 /**
  * Render the current component.
@@ -554,7 +566,7 @@ static public function hasSection ( $name )
  * Get the contents of a section.
  *
  * @param  string  $name
- * @param  string  $default
+ * @param  string|null  $default
  * @return mixed
  */
 static public function getSection ( $name , $default =NULL)  

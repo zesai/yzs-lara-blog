@@ -3,7 +3,7 @@ class Broadcast {
 /**
  * Create a new manager instance.
  *
- * @param  \Illuminate\Foundation\Application  $app
+ * @param  \Illuminate\Contracts\Foundation\Application  $app
  * @return void
  */
 public function __construct ( $app )  
@@ -53,7 +53,7 @@ static public function queue ( $event )
 /**
  * Get a driver instance.
  *
- * @param  string  $driver
+ * @param  string|null  $driver
  * @return mixed
  */
 static public function connection ( $driver =NULL)  

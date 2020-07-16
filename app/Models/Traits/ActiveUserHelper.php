@@ -7,6 +7,7 @@ use App\Models\Topic;
 use Cache;
 use Carbon\Carbon;
 use DB;
+use Illuminate\Support\Arr;
 
 trait ActiveUserHelper
 {
@@ -54,7 +55,7 @@ trait ActiveUserHelper
         $this->calculateReplyScore();
 
         // 数组按照得分排序
-        $users = array_sort($this->users, function ($user) {
+        $users = Arr::sort($this->users, function ($user) {
             return $user['score'];
         });
 

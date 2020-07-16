@@ -63,12 +63,13 @@ static public function useDefaultPostProcessor ()
 /**
  * Begin a fluent query against a database table.
  *
- * @param  string  $table
+ * @param  \Closure|\Illuminate\Database\Query\Builder|string  $table
+ * @param  string|null  $as
  * @return \Illuminate\Database\Query\Builder
  */
-static public function table ( $table )  
+static public function table ( $table , $as =NULL)  
 {
- 	 return (new Illuminate\Database\MySqlConnection)->table($table);
+ 	 return (new Illuminate\Database\MySqlConnection)->table($table,$as);
 }
 /**
  * Get a new query builder instance.
@@ -473,7 +474,7 @@ static public function unsetEventDispatcher ()
  	 return (new Illuminate\Database\MySqlConnection)->unsetEventDispatcher();
 }
 /**
- * Determine if the connection in a "dry run".
+ * Determine if the connection is in a "dry run".
  *
  * @return bool
  */

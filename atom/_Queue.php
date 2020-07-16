@@ -96,7 +96,7 @@ static public function deleteAndRelease ( $queue , $job , $delay )
  *
  * @param  \Illuminate\Contracts\Redis\Factory  $redis
  * @param  string  $default
- * @param  string  $connection
+ * @param  string|null  $connection
  * @param  int  $retryAfter
  * @param  int|null  $blockFor
  * @return void
@@ -108,7 +108,7 @@ public function __construct (Illuminate\Contracts\Redis\Factory $redis , $defaul
 /**
  * Get the size of the queue.
  *
- * @param  string  $queue
+ * @param  string|null  $queue
  * @return int
  */
 static public function size ( $queue =NULL)  
@@ -164,12 +164,22 @@ static public function laterOn ( $queue , $delay , $job , $data ='')
  *
  * @param  array   $jobs
  * @param  mixed   $data
- * @param  string  $queue
+ * @param  string|null  $queue
  * @return void
  */
 static public function bulk ( $jobs , $data ='', $queue =NULL)  
 {
  	 return (new Laravel\Horizon\RedisQueue)->bulk($jobs,$data,$queue);
+}
+/**
+ * Get the retry delay for an object-based queue handler.
+ *
+ * @param  mixed  $job
+ * @return mixed
+ */
+static public function getJobRetryDelay ( $job )  
+{
+ 	 return (new Laravel\Horizon\RedisQueue)->getJobRetryDelay($job);
 }
 /**
  * Get the expiration timestamp for an object-based queue handler.

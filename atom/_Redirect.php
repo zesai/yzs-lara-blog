@@ -49,7 +49,7 @@ static public function refresh ( $status =302, $headers =array ())
  * @param  string  $path
  * @param  int     $status
  * @param  array   $headers
- * @param  bool    $secure
+ * @param  bool|null    $secure
  * @return \Illuminate\Http\RedirectResponse
  */
 static public function guest ( $path , $status =302, $headers =array (), $secure =NULL)  
@@ -62,7 +62,7 @@ static public function guest ( $path , $status =302, $headers =array (), $secure
  * @param  string  $default
  * @param  int     $status
  * @param  array   $headers
- * @param  bool    $secure
+ * @param  bool|null    $secure
  * @return \Illuminate\Http\RedirectResponse
  */
 static public function intended ( $default ='/', $status =302, $headers =array (), $secure =NULL)  
@@ -85,7 +85,7 @@ static public function setIntendedUrl ( $url )
  * @param  string  $path
  * @param  int     $status
  * @param  array   $headers
- * @param  bool    $secure
+ * @param  bool|null    $secure
  * @return \Illuminate\Http\RedirectResponse
  */
 static public function to ( $path , $status =302, $headers =array (), $secure =NULL)  
@@ -177,13 +177,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Routing\Redirector)->mixin($mixin);
+ 	 return (new Illuminate\Routing\Redirector)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -199,7 +200,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -212,7 +213,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

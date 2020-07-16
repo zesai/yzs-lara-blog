@@ -6,8 +6,8 @@ class Cookie {
  * @param  string       $name
  * @param  string       $value
  * @param  int          $minutes
- * @param  string       $path
- * @param  string       $domain
+ * @param  string|null  $path
+ * @param  string|null  $domain
  * @param  bool|null    $secure
  * @param  bool         $httpOnly
  * @param  bool         $raw
@@ -23,8 +23,8 @@ static public function make ( $name , $value , $minutes =0, $path =NULL, $domain
  *
  * @param  string       $name
  * @param  string       $value
- * @param  string       $path
- * @param  string       $domain
+ * @param  string|null  $path
+ * @param  string|null  $domain
  * @param  bool|null    $secure
  * @param  bool         $httpOnly
  * @param  bool         $raw
@@ -39,8 +39,8 @@ static public function forever ( $name , $value , $path =NULL, $domain =NULL, $s
  * Expire the given cookie.
  *
  * @param  string  $name
- * @param  string  $path
- * @param  string  $domain
+ * @param  string|null  $path
+ * @param  string|null  $domain
  * @return \Symfony\Component\HttpFoundation\Cookie
  */
 static public function forget ( $name , $path =NULL, $domain =NULL)  
@@ -51,22 +51,24 @@ static public function forget ( $name , $path =NULL, $domain =NULL)
  * Determine if a cookie has been queued.
  *
  * @param  string  $key
+ * @param  string|null  $path
  * @return bool
  */
-static public function hasQueued ( $key )  
+static public function hasQueued ( $key , $path =NULL)  
 {
- 	 return (new Illuminate\Cookie\CookieJar)->hasQueued($key);
+ 	 return (new Illuminate\Cookie\CookieJar)->hasQueued($key,$path);
 }
 /**
  * Get a queued cookie instance.
  *
  * @param  string  $key
  * @param  mixed   $default
+ * @param  string  $path
  * @return \Symfony\Component\HttpFoundation\Cookie
  */
-static public function queued ( $key , $default =NULL)  
+static public function queued ( $key , $default =NULL, $path =NULL)  
 {
- 	 return (new Illuminate\Cookie\CookieJar)->queued($key,$default);
+ 	 return (new Illuminate\Cookie\CookieJar)->queued($key,$default,$path);
 }
 /**
  * Queue a cookie to send with the next response.
@@ -82,11 +84,12 @@ static public function queue ( $parameters )
  * Remove a cookie from the queue.
  *
  * @param  string  $name
+ * @param  string|null $path
  * @return void
  */
-static public function unqueue ( $name )  
+static public function unqueue ( $name , $path =NULL)  
 {
- 	 return (new Illuminate\Cookie\CookieJar)->unqueue($name);
+ 	 return (new Illuminate\Cookie\CookieJar)->unqueue($name,$path);
 }
 /**
  * Set the default path and domain for the jar.
@@ -94,7 +97,7 @@ static public function unqueue ( $name )
  * @param  string  $path
  * @param  string  $domain
  * @param  bool    $secure
- * @param  string  $sameSite
+ * @param  string|null  $sameSite
  * @return static|$this
  */
 static public function setDefaultPathAndDomain ( $path , $domain , $secure =false, $sameSite =NULL)  
@@ -126,13 +129,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Cookie\CookieJar)->mixin($mixin);
+ 	 return (new Illuminate\Cookie\CookieJar)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -148,7 +152,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -161,7 +165,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

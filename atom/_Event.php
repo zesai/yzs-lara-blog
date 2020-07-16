@@ -81,18 +81,6 @@ static public function until ( $event , $payload =array ())
  * @param  bool  $halt
  * @return array|null
  */
-static public function fire ( $event , $payload =array (), $halt =false)  
-{
- 	 return (new Illuminate\Events\Dispatcher)->fire($event,$payload,$halt);
-}
-/**
- * Fire an event and call the listeners.
- *
- * @param  string|object  $event
- * @param  mixed  $payload
- * @param  bool  $halt
- * @return array|null
- */
 static public function dispatch ( $event , $payload =array (), $halt =false)  
 {
  	 return (new Illuminate\Events\Dispatcher)->dispatch($event,$payload,$halt);

@@ -11,6 +11,7 @@ use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TopicsController extends AdminController
 {
@@ -47,7 +48,7 @@ class TopicsController extends AdminController
         })->width(200);
 
         $grid->column('excerpt', '摘要')->display(function($text) {
-            return str_limit($text, 150, '...');
+            return Str::limit($text, 150, '...');
         })->width(200);
 
         $grid->cover('封面图')->image(150,100);
@@ -126,7 +127,7 @@ class TopicsController extends AdminController
                     return "/images/topics/" . date('Ym/d',time());
                 }
             }, function ($file) {
-                return '1_' . time() . '_' . str_random(10) . '.' . $file->guessExtension();
+                return '1_' . time() . '_' . Str::random(10) . '.' . $file->guessExtension();
             });
         $form->editor('body', __('文章内容'));
         $form->hidden('user_id')->default(1);

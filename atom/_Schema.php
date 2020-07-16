@@ -40,6 +40,15 @@ static public function dropAllViews ()
  	 return (new Illuminate\Database\Schema\MySqlBuilder)->dropAllViews();
 }
 /**
+ * Get all of the table names for the database.
+ *
+ * @return array
+ */
+static public function getAllTables ()  
+{
+ 	 return (new Illuminate\Database\Schema\MySqlBuilder)->getAllTables();
+}
+/**
  * Create a new database Schema manager.
  *
  * @param  \Illuminate\Database\Connection  $connection
@@ -135,6 +144,17 @@ static public function dropIfExists ( $table )
  	 return (new Illuminate\Database\Schema\MySqlBuilder)->dropIfExists($table);
 }
 /**
+ * Drop all types from the database.
+ *
+ * @return void
+ *
+ * @throws \LogicException
+ */
+static public function dropAllTypes ()  
+{
+ 	 return (new Illuminate\Database\Schema\MySqlBuilder)->dropAllTypes();
+}
+/**
  * Rename a table on the schema.
  *
  * @param  string  $from
@@ -162,6 +182,20 @@ static public function enableForeignKeyConstraints ()
 static public function disableForeignKeyConstraints ()  
 {
  	 return (new Illuminate\Database\Schema\MySqlBuilder)->disableForeignKeyConstraints();
+}
+/**
+ * Register a custom Doctrine mapping type.
+ *
+ * @param  string  $class
+ * @param  string  $name
+ * @param  string  $type
+ * @return void
+ *
+ * @throws \Doctrine\DBAL\DBALException
+ */
+static public function registerCustomDoctrineType ( $class , $name , $type )  
+{
+ 	 return (new Illuminate\Database\Schema\MySqlBuilder)->registerCustomDoctrineType($class,$name,$type);
 }
 /**
  * Get the database connection instance.

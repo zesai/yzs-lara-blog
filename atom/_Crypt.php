@@ -52,6 +52,8 @@ static public function encrypt ( $value , $serialize =true)
  *
  * @param  string  $value
  * @return string
+ *
+ * @throws \Illuminate\Contracts\Encryption\EncryptException
  */
 static public function encryptString ( $value )  
 {
@@ -60,7 +62,7 @@ static public function encryptString ( $value )
 /**
  * Decrypt the given value.
  *
- * @param  mixed  $payload
+ * @param  string  $payload
  * @param  bool  $unserialize
  * @return mixed
  *
@@ -75,6 +77,8 @@ static public function decrypt ( $payload , $unserialize =true)
  *
  * @param  string  $payload
  * @return string
+ *
+ * @throws \Illuminate\Contracts\Encryption\DecryptException
  */
 static public function decryptString ( $payload )  
 {

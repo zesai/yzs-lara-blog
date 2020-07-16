@@ -26,8 +26,8 @@ public $useWritePdo ;
  * Create a new query builder instance.
  *
  * @param  \Illuminate\Database\ConnectionInterface  $connection
- * @param  \Illuminate\Database\Query\Grammars\Grammar  $grammar
- * @param  \Illuminate\Database\Query\Processors\Processor  $processor
+ * @param  \Illuminate\Database\Query\Grammars\Grammar|null  $grammar
+ * @param  \Illuminate\Database\Query\Processors\Processor|null  $processor
  * @return void
  */
 public function __construct (Illuminate\Database\ConnectionInterface $connection ,Illuminate\Database\Query\Grammars\Grammar $grammar =NULL,Illuminate\Database\Query\Processors\Processor $processor =NULL)  
@@ -111,17 +111,19 @@ static public function addSelect ( $column )
  */
 static public function distinct ()  
 {
- 	 return (new Illuminate\Database\Query\Builder)->distinct();
+ 	 func_get_args();
+	 return (new Illuminate\Database\Query\Builder)->distinct();
 }
 /**
  * Set the table which the query is targeting.
  *
- * @param  string  $table
+ * @param  \Closure|\Illuminate\Database\Query\Builder|string  $table
+ * @param  string|null  $as
  * @return static|$this
  */
-static public function from ( $table )  
+static public function from ( $table , $as =NULL)  
 {
- 	 return (new Illuminate\Database\Query\Builder)->from($table);
+ 	 return (new Illuminate\Database\Query\Builder)->from($table,$as);
 }
 /**
  * Add a join clause to the query.
@@ -277,7 +279,7 @@ static public function mergeWheres ( $wheres , $bindings )
 /**
  * Add a basic where clause to the query.
  *
- * @param  string|array|\Closure  $column
+ * @param  \Closure|string|array  $column
  * @param  mixed   $operator
  * @param  mixed   $value
  * @param  string  $boolean
@@ -304,7 +306,7 @@ static public function prepareValueAndOperator ( $value , $operator , $useDefaul
 /**
  * Add an "or where" clause to the query.
  *
- * @param  string|array|\Closure  $column
+ * @param  \Closure|string|array  $column
  * @param  mixed  $operator
  * @param  mixed  $value
  * @return static
@@ -436,14 +438,14 @@ static public function whereIntegerNotInRaw ( $column , $values , $boolean ='and
 /**
  * Add a "where null" clause to the query.
  *
- * @param  string  $column
+ * @param  string|array  $columns
  * @param  string  $boolean
  * @param  bool    $not
  * @return static|$this
  */
-static public function whereNull ( $column , $boolean ='and', $not =false)  
+static public function whereNull ( $columns , $boolean ='and', $not =false)  
 {
- 	 return (new Illuminate\Database\Query\Builder)->whereNull($column,$boolean,$not);
+ 	 return (new Illuminate\Database\Query\Builder)->whereNull($columns,$boolean,$not);
 }
 /**
  * Add an "or where null" clause to the query.
@@ -528,7 +530,7 @@ static public function orWhereNotNull ( $column )
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @param  string  $boolean
  * @return static
  */
@@ -541,7 +543,7 @@ static public function whereDate ( $column , $operator , $value =NULL, $boolean 
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @return static
  */
 static public function orWhereDate ( $column , $operator , $value =NULL)  
@@ -553,7 +555,7 @@ static public function orWhereDate ( $column , $operator , $value =NULL)
  *
  * @param  string  $column
  * @param  string   $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @param  string   $boolean
  * @return static
  */
@@ -566,7 +568,7 @@ static public function whereTime ( $column , $operator , $value =NULL, $boolean 
  *
  * @param  string  $column
  * @param  string   $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @return static
  */
 static public function orWhereTime ( $column , $operator , $value =NULL)  
@@ -578,7 +580,7 @@ static public function orWhereTime ( $column , $operator , $value =NULL)
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @param  string  $boolean
  * @return static
  */
@@ -591,7 +593,7 @@ static public function whereDay ( $column , $operator , $value =NULL, $boolean =
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @return static
  */
 static public function orWhereDay ( $column , $operator , $value =NULL)  
@@ -603,7 +605,7 @@ static public function orWhereDay ( $column , $operator , $value =NULL)
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @param  string  $boolean
  * @return static
  */
@@ -616,7 +618,7 @@ static public function whereMonth ( $column , $operator , $value =NULL, $boolean
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string  $value
+ * @param  \DateTimeInterface|string|null  $value
  * @return static
  */
 static public function orWhereMonth ( $column , $operator , $value =NULL)  
@@ -628,7 +630,7 @@ static public function orWhereMonth ( $column , $operator , $value =NULL)
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string|int  $value
+ * @param  \DateTimeInterface|string|int|null  $value
  * @param  string  $boolean
  * @return static
  */
@@ -641,7 +643,7 @@ static public function whereYear ( $column , $operator , $value =NULL, $boolean 
  *
  * @param  string  $column
  * @param  string  $operator
- * @param  \DateTimeInterface|string|int  $value
+ * @param  \DateTimeInterface|string|int|null  $value
  * @return static
  */
 static public function orWhereYear ( $column , $operator , $value =NULL)  
@@ -836,7 +838,7 @@ static public function orWhereJsonLength ( $column , $operator , $value =NULL)
  * Handles dynamic "where" clauses to the query.
  *
  * @param  string  $method
- * @param  string  $parameters
+ * @param  array  $parameters
  * @return static|$this
  */
 static public function dynamicWhere ( $method , $parameters )  
@@ -917,9 +919,11 @@ static public function orHavingRaw ( $sql ,array $bindings =array ())
 /**
  * Add an "order by" clause to the query.
  *
- * @param  string  $column
+ * @param  \Closure|\Illuminate\Database\Query\Builder|string  $column
  * @param  string  $direction
  * @return static|$this
+ *
+ * @throws \InvalidArgumentException
  */
 static public function orderBy ( $column , $direction ='asc')  
 {
@@ -1028,6 +1032,18 @@ static public function forPage ( $page , $perPage =15)
  	 return (new Illuminate\Database\Query\Builder)->forPage($page,$perPage);
 }
 /**
+ * Constrain the query to the previous "page" of results before a given ID.
+ *
+ * @param  int  $perPage
+ * @param  int|null  $lastId
+ * @param  string  $column
+ * @return static
+ */
+static public function forPageBeforeId ( $perPage =15, $lastId =0, $column ='id')  
+{
+ 	 return (new Illuminate\Database\Query\Builder)->forPageBeforeId($perPage,$lastId,$column);
+}
+/**
  * Constrain the query to the next "page" of results after a given ID.
  *
  * @param  int  $perPage
@@ -1100,7 +1116,7 @@ static public function toSql ()
 /**
  * Execute a query for a single record by ID.
  *
- * @param  int    $id
+ * @param  int|string  $id
  * @param  array  $columns
  * @return mixed|static
  */
@@ -1121,7 +1137,7 @@ static public function value ( $column )
 /**
  * Execute the query as a "select" statement.
  *
- * @param  array  $columns
+ * @param  array|string  $columns
  * @return \Illuminate\Support\Collection
  */
 static public function get ( $columns =array (  0 => '*',))  
@@ -1167,26 +1183,13 @@ static public function getCountForPagination ( $columns =array (  0 => '*',))
  	 return (new Illuminate\Database\Query\Builder)->getCountForPagination($columns);
 }
 /**
- * Get a generator for the given query.
+ * Get a lazy collection for the given query.
  *
- * @return \Generator
+ * @return \Illuminate\Support\LazyCollection
  */
 static public function cursor ()  
 {
  	 return (new Illuminate\Database\Query\Builder)->cursor();
-}
-/**
- * Chunk the results of a query by comparing numeric IDs.
- *
- * @param  int  $count
- * @param  callable  $callback
- * @param  string  $column
- * @param  string|null  $alias
- * @return bool
- */
-static public function chunkById ( $count ,callable $callback , $column ='id', $alias =NULL)  
-{
- 	 return (new Illuminate\Database\Query\Builder)->chunkById($count,$callback,$column,$alias);
 }
 /**
  * Get an array with the values of a given column.
@@ -1321,6 +1324,16 @@ static public function insert (array $values )
  	 return (new Illuminate\Database\Query\Builder)->insert($values);
 }
 /**
+ * Insert a new record into the database while ignoring errors.
+ *
+ * @param  array  $values
+ * @return int
+ */
+static public function insertOrIgnore (array $values )  
+{
+ 	 return (new Illuminate\Database\Query\Builder)->insertOrIgnore($values);
+}
+/**
  * Insert a new record and get the value of the primary key.
  *
  * @param  array  $values
@@ -1336,7 +1349,7 @@ static public function insertGetId (array $values , $sequence =NULL)
  *
  * @param  array  $columns
  * @param  \Closure|\Illuminate\Database\Query\Builder|string  $query
- * @return bool
+ * @return int
  */
 static public function insertUsing (array $columns , $query )  
 {
@@ -1536,6 +1549,24 @@ static public function cloneWithoutBindings (array $except )
  	 return (new Illuminate\Database\Query\Builder)->cloneWithoutBindings($except);
 }
 /**
+ * Dump the current SQL and bindings.
+ *
+ * @return static|$this
+ */
+static public function dump ()  
+{
+ 	 return (new Illuminate\Database\Query\Builder)->dump();
+}
+/**
+ * Die and dump the current SQL and bindings.
+ *
+ * @return void
+ */
+static public function dd ()  
+{
+ 	 return (new Illuminate\Database\Query\Builder)->dd();
+}
+/**
  * Handle dynamic method calls into the method.
  *
  * @param  string  $method
@@ -1571,6 +1602,32 @@ static public function each (callable $callback , $count =1000)
  	 return (new Illuminate\Database\Query\Builder)->each($callback,$count);
 }
 /**
+ * Chunk the results of a query by comparing IDs.
+ *
+ * @param  int  $count
+ * @param  callable  $callback
+ * @param  string|null  $column
+ * @param  string|null  $alias
+ * @return bool
+ */
+static public function chunkById ( $count ,callable $callback , $column =NULL, $alias =NULL)  
+{
+ 	 return (new Illuminate\Database\Query\Builder)->chunkById($count,$callback,$column,$alias);
+}
+/**
+ * Execute a callback over each item while chunking by id.
+ *
+ * @param  callable  $callback
+ * @param  int  $count
+ * @param  string  $column
+ * @param  string  $alias
+ * @return bool
+ */
+static public function eachById (callable $callback , $count =1000, $column =NULL, $alias =NULL)  
+{
+ 	 return (new Illuminate\Database\Query\Builder)->eachById($callback,$count,$column,$alias);
+}
+/**
  * Execute the query and get the first result.
  *
  * @param  array  $columns
@@ -1585,7 +1642,7 @@ static public function first ( $columns =array (  0 => '*',))
  *
  * @param  mixed  $value
  * @param  callable  $callback
- * @param  callable  $default
+ * @param  callable|null  $default
  * @return mixed|static|$this
  */
 static public function when ( $value , $callback , $default =NULL)  
@@ -1607,7 +1664,7 @@ static public function tap ( $callback )
  *
  * @param  mixed  $value
  * @param  callable  $callback
- * @param  callable  $default
+ * @param  callable|null  $default
  * @return mixed|static|$this
  */
 static public function unless ( $value , $callback , $default =NULL)  
@@ -1630,13 +1687,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Database\Query\Builder)->mixin($mixin);
+ 	 return (new Illuminate\Database\Query\Builder)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -1652,7 +1710,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -1665,7 +1723,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

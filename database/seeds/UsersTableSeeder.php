@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
 
         //让隐藏字段可见，并将数据集合转换为数组
         $user_array = $users->makeVisible(['password','remember_token'])->toArray();
-
+        \App\Models\Tag::find(1);
         //插入到数据中
         User::insert($user_array);
         //单独处理第一个用户

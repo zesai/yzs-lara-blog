@@ -10,9 +10,17 @@ trait LastActivedAtHelper
     //缓存相关
     protected $hash_prefix = 'larabbs_last_actived_at_';
     protected $field_prefix = 'user_';
+    protected $redis;
+
+    public function __construct()
+    {
+        $this->redis = app('redis');
+    }
 
     /**
      * 记录最后活跃时间到 redis
+     * @author zesai
+     * @date 2020/7/16
      */
     public function recordLastActivedAt()
     {
@@ -26,17 +34,22 @@ trait LastActivedAtHelper
         $now = Carbon::now()->toDateTimeString();
 
         // 将数据写入 Redis，字段已存在会被更新
-        Redis::hSet($hash, $field, $now);
+        $this->redis->hset($hash, $field, $now);
+
     }
 
-    // 同步缓存中到数据到数据库
+    /**
+     * 同步缓存中到数据到数据库
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function syncUserActivedAt()
     {
         // Redis 哈希表的命名，如：larabbs_last_actived_at_2019_09_11
         $hash = $this->getHashFromDateString(Carbon::yesterday()->toDateString());
 
         //从 Redis 中获取所有哈希表里的数据
-        $dates = Redis::hGetAll($hash);
+        $dates = $this->redis->hgetall($hash);
 
         // 遍历，并同步到数据库中
         foreach ($dates as $user_id => $actived_at) {
@@ -51,9 +64,16 @@ trait LastActivedAtHelper
         }
 
         // 以数据库为中心到存储，既已同步，即可删除
-        Redis::del($hash);
+        $this->redis->del($hash);
     }
 
+    /**
+     * @param $value
+     * @return Carbon
+     * @throws \Exception
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function getLastActivedAtAttribute($value)
     {
         //获取今日对应到哈希表名称
@@ -63,7 +83,7 @@ trait LastActivedAtHelper
         $field = $this->getHashField();
 
         // 三元运算符，优先选择 Redis 的数据，否则使用数据库中
-        $datetime = Redis::hGet($hash, $field) ? : $value;
+        $datetime = $this->redis->hget($hash, $field) ? : $value;
 
         // 如果存在的话，返回时间对应的 Carbon 实体
         if ($datetime) {
@@ -74,12 +94,23 @@ trait LastActivedAtHelper
         }
     }
 
+    /**
+     * @param $date
+     * @return string
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function getHashFromDateString($date)
     {
         // Redis 哈希表的命名，如：larabbs_last_actived_at_2017-10-21
         return $this->hash_prefix . $date;
     }
 
+    /**
+     * @return string
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function getHashField()
     {
         // 字段名称，如：user_1

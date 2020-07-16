@@ -35,18 +35,6 @@ static public function has ( $key , $locale =NULL, $fallback =true)
  	 return (new Illuminate\Translation\Translator)->has($key,$locale,$fallback);
 }
 /**
- * Get the translation for a given key.
- *
- * @param  string  $key
- * @param  array   $replace
- * @param  string  $locale
- * @return string|array
- */
-static public function trans ( $key ,array $replace =array (), $locale =NULL)  
-{
- 	 return (new Illuminate\Translation\Translator)->trans($key,$replace,$locale);
-}
-/**
  * Get the translation for the given key.
  *
  * @param  string  $key
@@ -60,37 +48,12 @@ static public function get ( $key ,array $replace =array (), $locale =NULL, $fal
  	 return (new Illuminate\Translation\Translator)->get($key,$replace,$locale,$fallback);
 }
 /**
- * Get the translation for a given key from the JSON translation files.
- *
- * @param  string  $key
- * @param  array  $replace
- * @param  string  $locale
- * @return string|array
- */
-static public function getFromJson ( $key ,array $replace =array (), $locale =NULL)  
-{
- 	 return (new Illuminate\Translation\Translator)->getFromJson($key,$replace,$locale);
-}
-/**
  * Get a translation according to an integer value.
  *
  * @param  string  $key
- * @param  int|array|\Countable  $number
+ * @param  \Countable|int|array  $number
  * @param  array   $replace
- * @param  string  $locale
- * @return string
- */
-static public function transChoice ( $key , $number ,array $replace =array (), $locale =NULL)  
-{
- 	 return (new Illuminate\Translation\Translator)->transChoice($key,$number,$replace,$locale);
-}
-/**
- * Get a translation according to an integer value.
- *
- * @param  string  $key
- * @param  int|array|\Countable  $number
- * @param  array   $replace
- * @param  string  $locale
+ * @param  string|null  $locale
  * @return string
  */
 static public function choice ( $key , $number ,array $replace =array (), $locale =NULL)  
@@ -264,13 +227,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Translation\Translator)->mixin($mixin);
+ 	 return (new Illuminate\Translation\Translator)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -286,7 +250,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -299,7 +263,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

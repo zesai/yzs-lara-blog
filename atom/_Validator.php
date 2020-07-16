@@ -4,7 +4,7 @@ class Validator {
  * Create a new Validator factory instance.
  *
  * @param  \Illuminate\Contracts\Translation\Translator  $translator
- * @param  \Illuminate\Contracts\Container\Container  $container
+ * @param  \Illuminate\Contracts\Container\Container|null  $container
  * @return void
  */
 public function __construct (Illuminate\Contracts\Translation\Translator $translator ,Illuminate\Contracts\Container\Container $container =NULL)  
@@ -44,7 +44,7 @@ static public function validate (array $data ,array $rules ,array $messages =arr
  *
  * @param  string  $rule
  * @param  \Closure|string  $extension
- * @param  string  $message
+ * @param  string|null  $message
  * @return void
  */
 static public function extend ( $rule , $extension , $message =NULL)  
@@ -56,7 +56,7 @@ static public function extend ( $rule , $extension , $message =NULL)
  *
  * @param  string  $rule
  * @param  \Closure|string  $extension
- * @param  string  $message
+ * @param  string|null  $message
  * @return void
  */
 static public function extendImplicit ( $rule , $extension , $message =NULL)  
@@ -68,7 +68,7 @@ static public function extendImplicit ( $rule , $extension , $message =NULL)
  *
  * @param  string  $rule
  * @param  \Closure|string  $extension
- * @param  string  $message
+ * @param  string|null  $message
  * @return void
  */
 static public function extendDependent ( $rule , $extension , $message =NULL)  

@@ -3,7 +3,7 @@ class Redis {
 /**
  * Create a new Redis manager instance.
  *
- * @param  \Illuminate\Foundation\Application  $app
+ * @param  \Illuminate\Contracts\Foundation\Application  $app
  * @param  string  $driver
  * @param  array  $config
  * @return void
@@ -60,6 +60,27 @@ static public function enableEvents ()
 static public function disableEvents ()  
 {
  	 return (new Illuminate\Redis\RedisManager)->disableEvents();
+}
+/**
+ * Set the default driver.
+ *
+ * @param  string  $driver
+ * @return void
+ */
+static public function setDriver ( $driver )  
+{
+ 	 return (new Illuminate\Redis\RedisManager)->setDriver($driver);
+}
+/**
+ * Register a custom driver creator Closure.
+ *
+ * @param  string  $driver
+ * @param  \Closure  $callback
+ * @return static|$this
+ */
+static public function extend ( $driver ,Closure $callback )  
+{
+ 	 return (new Illuminate\Redis\RedisManager)->extend($driver,$callback);
 }
 /**
  * Pass methods onto the default Redis connection.

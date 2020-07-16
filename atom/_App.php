@@ -251,12 +251,12 @@ static public function environmentFilePath ()
 /**
  * Get or check the current application environment.
  *
+ * @param  string|array  $environments
  * @return string|bool
  */
-static public function environment ()  
+static public function environment ( $environments )  
 {
- 	 func_get_args();
-	 return (new Illuminate\Foundation\Application)->environment();
+ 	 return (new Illuminate\Foundation\Application)->environment($environments);
 }
 /**
  * Determine if application is in local environment.
@@ -266,6 +266,15 @@ static public function environment ()
 static public function isLocal ()  
 {
  	 return (new Illuminate\Foundation\Application)->isLocal();
+}
+/**
+ * Determine if application is in production environment.
+ *
+ * @return bool
+ */
+static public function isProduction ()  
+{
+ 	 return (new Illuminate\Foundation\Application)->isProduction();
 }
 /**
  * Detect the application's current environment.
@@ -509,6 +518,24 @@ static public function getCachedRoutesPath ()
  	 return (new Illuminate\Foundation\Application)->getCachedRoutesPath();
 }
 /**
+ * Determine if the application events are cached.
+ *
+ * @return bool
+ */
+static public function eventsAreCached ()  
+{
+ 	 return (new Illuminate\Foundation\Application)->eventsAreCached();
+}
+/**
+ * Get the path to the events cache file.
+ *
+ * @return string
+ */
+static public function getCachedEventsPath ()  
+{
+ 	 return (new Illuminate\Foundation\Application)->getCachedEventsPath();
+}
+/**
  * Determine if the application is currently down for maintenance.
  *
  * @return bool
@@ -534,10 +561,10 @@ static public function abort ( $code , $message ='',array $headers =array ())
 /**
  * Register a terminating callback with the application.
  *
- * @param  \Closure  $callback
+ * @param  callable|string  $callback
  * @return static|$this
  */
-static public function terminating (Closure $callback )  
+static public function terminating ( $callback )  
 {
  	 return (new Illuminate\Foundation\Application)->terminating($callback);
 }
@@ -793,6 +820,17 @@ static public function singleton ( $abstract , $concrete =NULL)
  	 return (new Illuminate\Foundation\Application)->singleton($abstract,$concrete);
 }
 /**
+ * Register a shared binding if it hasn't already been registered.
+ *
+ * @param  string  $abstract
+ * @param  \Closure|string|null  $concrete
+ * @return void
+ */
+static public function singletonIf ( $abstract , $concrete =NULL)  
+{
+ 	 return (new Illuminate\Foundation\Application)->singletonIf($abstract,$concrete);
+}
+/**
  * "Extend" an abstract type in the container.
  *
  * @param  string    $abstract
@@ -832,7 +870,7 @@ static public function tag ( $abstracts , $tags )
  * Resolve all of the bindings for a given tag.
  *
  * @param  string  $tag
- * @return array
+ * @return iterable
  */
 static public function tagged ( $tag )  
 {
@@ -844,6 +882,8 @@ static public function tagged ( $tag )
  * @param  string  $abstract
  * @param  string  $alias
  * @return void
+ *
+ * @throws \LogicException
  */
 static public function alias ( $abstract , $alias )  
 {
@@ -971,8 +1011,6 @@ static public function getBindings ()
  *
  * @param  string  $abstract
  * @return string
- *
- * @throws \LogicException
  */
 static public function getAlias ( $abstract )  
 {
@@ -1008,7 +1046,7 @@ static public function forgetInstances ()
  	 return (new Illuminate\Foundation\Application)->forgetInstances();
 }
 /**
- * Set the globally available instance of the container.
+ * Get the globally available instance of the container.
  *
  * @return static
  */

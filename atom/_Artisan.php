@@ -15,7 +15,7 @@ public function __construct (Illuminate\Contracts\Foundation\Application $app ,I
  * Run the console application.
  *
  * @param  \Symfony\Component\Console\Input\InputInterface  $input
- * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+ * @param  \Symfony\Component\Console\Output\OutputInterface|null  $output
  * @return int
  */
 static public function handle ( $input , $output =NULL)  
@@ -59,8 +59,10 @@ static public function registerCommand ( $command )
  *
  * @param  string  $command
  * @param  array  $parameters
- * @param  \Symfony\Component\Console\Output\OutputInterface  $outputBuffer
+ * @param  \Symfony\Component\Console\Output\OutputInterface|null  $outputBuffer
  * @return int
+ *
+ * @throws \Symfony\Component\Console\Exception\CommandNotFoundException
  */
 static public function call ( $command ,array $parameters =array (), $outputBuffer =NULL)  
 {

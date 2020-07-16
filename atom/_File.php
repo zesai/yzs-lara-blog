@@ -71,7 +71,7 @@ static public function hash ( $path )
  * @param  string  $path
  * @param  string  $contents
  * @param  bool  $lock
- * @return int
+ * @return int|bool
  */
 static public function put ( $path , $contents , $lock =false)  
 {
@@ -114,7 +114,7 @@ static public function append ( $path , $data )
  * Get or set UNIX mode of a file or directory.
  *
  * @param  string  $path
- * @param  int  $mode
+ * @param  int|null  $mode
  * @return mixed
  */
 static public function chmod ( $path , $mode =NULL)  
@@ -358,7 +358,7 @@ static public function moveDirectory ( $from , $to , $overwrite =false)
  *
  * @param  string  $directory
  * @param  string  $destination
- * @param  int     $options
+ * @param  int|null  $options
  * @return bool
  */
 static public function copyDirectory ( $directory , $destination , $options =NULL)  
@@ -414,13 +414,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Filesystem\Filesystem)->mixin($mixin);
+ 	 return (new Illuminate\Filesystem\Filesystem)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -436,7 +437,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -449,7 +450,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

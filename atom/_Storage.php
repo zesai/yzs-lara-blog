@@ -288,19 +288,6 @@ static public function getAwsTemporaryUrl ( $adapter , $path , $expiration , $op
  	 return (new Illuminate\Filesystem\FilesystemAdapter)->getAwsTemporaryUrl($adapter,$path,$expiration,$options);
 }
 /**
- * Get a temporary URL for the file at the given path.
- *
- * @param  \League\Flysystem\Rackspace\RackspaceAdapter  $adapter
- * @param  string  $path
- * @param  \DateTimeInterface  $expiration
- * @param  array  $options
- * @return string
- */
-static public function getRackspaceTemporaryUrl ( $adapter , $path , $expiration , $options )  
-{
- 	 return (new Illuminate\Filesystem\FilesystemAdapter)->getRackspaceTemporaryUrl($adapter,$path,$expiration,$options);
-}
-/**
  * Get an array of all files in a directory.
  *
  * @param  string|null  $directory

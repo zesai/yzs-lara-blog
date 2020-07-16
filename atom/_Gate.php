@@ -9,11 +9,12 @@ class Gate {
  * @param  array  $policies
  * @param  array  $beforeCallbacks
  * @param  array  $afterCallbacks
+ * @param  callable|null  $guessPolicyNamesUsingCallback
  * @return void
  */
-public function __construct (Illuminate\Contracts\Container\Container $container ,callable $userResolver ,array $abilities =array (),array $policies =array (),array $beforeCallbacks =array (),array $afterCallbacks =array ())  
+public function __construct (Illuminate\Contracts\Container\Container $container ,callable $userResolver ,array $abilities =array (),array $policies =array (),array $beforeCallbacks =array (),array $afterCallbacks =array (),callable $guessPolicyNamesUsingCallback =NULL)  
 {
- 	 return (new Illuminate\Auth\Access\Gate)->__construct($container,$userResolver,$abilities,$policies,$beforeCallbacks,$afterCallbacks);
+ 	 return (new Illuminate\Auth\Access\Gate)->__construct($container,$userResolver,$abilities,$policies,$beforeCallbacks,$afterCallbacks,$guessPolicyNamesUsingCallback);
 }
 /**
  * Determine if a given ability has been defined.
@@ -127,6 +128,17 @@ static public function any ( $abilities , $arguments =array ())
  	 return (new Illuminate\Auth\Access\Gate)->any($abilities,$arguments);
 }
 /**
+ * Determine if all of the given abilities should be denied for the current user.
+ *
+ * @param  iterable|string  $abilities
+ * @param  array|mixed  $arguments
+ * @return bool
+ */
+static public function none ( $abilities , $arguments =array ())  
+{
+ 	 return (new Illuminate\Auth\Access\Gate)->none($abilities,$arguments);
+}
+/**
  * Determine if the given ability should be granted for the current user.
  *
  * @param  string  $ability
@@ -140,11 +152,24 @@ static public function authorize ( $ability , $arguments =array ())
  	 return (new Illuminate\Auth\Access\Gate)->authorize($ability,$arguments);
 }
 /**
+ * Inspect the user for the given ability.
+ *
+ * @param  string  $ability
+ * @param  array|mixed  $arguments
+ * @return \Illuminate\Auth\Access\Response
+ */
+static public function inspect ( $ability , $arguments =array ())  
+{
+ 	 return (new Illuminate\Auth\Access\Gate)->inspect($ability,$arguments);
+}
+/**
  * Get the raw result from the authorization callback.
  *
  * @param  string  $ability
  * @param  array|mixed  $arguments
  * @return mixed
+ *
+ * @throws \Illuminate\Auth\Access\AuthorizationException
  */
 static public function raw ( $ability , $arguments =array ())  
 {
@@ -161,10 +186,22 @@ static public function getPolicyFor ( $class )
  	 return (new Illuminate\Auth\Access\Gate)->getPolicyFor($class);
 }
 /**
+ * Specify a callback to be used to guess policy names.
+ *
+ * @param  callable  $callback
+ * @return static|$this
+ */
+static public function guessPolicyNamesUsing (callable $callback )  
+{
+ 	 return (new Illuminate\Auth\Access\Gate)->guessPolicyNamesUsing($callback);
+}
+/**
  * Build a policy class instance of the given type.
  *
  * @param  object|string  $class
  * @return mixed
+ *
+ * @throws \Illuminate\Contracts\Container\BindingResolutionException
  */
 static public function resolvePolicy ( $class )  
 {

@@ -3,7 +3,7 @@ class Blade {
 /**
  * Compile the view at the given path.
  *
- * @param  string  $path
+ * @param  string|null  $path
  * @return void
  */
 static public function compile ( $path =NULL)  
@@ -94,7 +94,7 @@ static public function check ( $name , $parameters )
  * Register a component alias directive.
  *
  * @param  string  $path
- * @param  string  $alias
+ * @param  string|null  $alias
  * @return void
  */
 static public function component ( $path , $alias =NULL)  
@@ -105,7 +105,7 @@ static public function component ( $path , $alias =NULL)
  * Register an include alias directive.
  *
  * @param  string  $path
- * @param  string  $alias
+ * @param  string|null  $alias
  * @return void
  */
 static public function include ( $path , $alias =NULL)  

@@ -195,7 +195,7 @@ static public function secure ()
 /**
  * Get the client IP address.
  *
- * @return string
+ * @return string|null
  */
 static public function ip ()  
 {
@@ -223,7 +223,7 @@ static public function userAgent ()
  * Merge new input into the current request's input array.
  *
  * @param  array  $input
- * @return static
+ * @return static|$this
  */
 static public function merge (array $input )  
 {
@@ -233,7 +233,7 @@ static public function merge (array $input )
  * Replace the input for the current request.
  *
  * @param  array  $input
- * @return static
+ * @return static|$this
  */
 static public function replace (array $input )  
 {
@@ -255,7 +255,7 @@ static public function get ( $key , $default =NULL)
 /**
  * Get the JSON payload for the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  mixed   $default
  * @return \Symfony\Component\HttpFoundation\ParameterBag|mixed
  */
@@ -567,7 +567,7 @@ static public function overrideGlobals ()
  *
  * You should only list the reverse proxies that you manage directly.
  *
- * @param array $proxies          A list of trusted proxies
+ * @param array $proxies          A list of trusted proxies, the string 'REMOTE_ADDR' will be replaced with $_SERVER['REMOTE_ADDR']
  * @param int   $trustedHeaderSet A bit field of Request::HEADER_*, to set which headers to trust from your proxies
  *
  * @throws \InvalidArgumentException When $trustedHeaderSet is invalid
@@ -675,11 +675,7 @@ static public function hasSession ()
 {
  	 return (new Illuminate\Http\Request)->hasSession();
 }
-/**
- * Sets the Session.
- *
- * @param SessionInterface $session The Session
- */
+
 static public function setSession (Symfony\Component\HttpFoundation\Session\SessionInterface $session )  
 {
  	 return (new Illuminate\Http\Request)->setSession($session);
@@ -1047,6 +1043,8 @@ static public function setFormat ( $format , $mimeTypes )
  * * _format request attribute
  * * $default
  *
+ * @see getPreferredFormat
+ *
  * @param string|null $default The default format
  *
  * @return string|null The request format
@@ -1125,14 +1123,11 @@ static public function isMethod ( $method )
  *
  * @see https://tools.ietf.org/html/rfc7231#section-4.2.1
  *
- * @param bool $andCacheable Adds the additional condition that the method should be cacheable. True by default.
- *
  * @return bool
  */
 static public function isMethodSafe ()  
 {
- 	 func_get_args();
-	 return (new Illuminate\Http\Request)->isMethodSafe();
+ 	 return (new Illuminate\Http\Request)->isMethodSafe();
 }
 /**
  * Checks whether or not the method is idempotent.
@@ -1199,9 +1194,21 @@ static public function isNoCache ()
  	 return (new Illuminate\Http\Request)->isNoCache();
 }
 /**
+ * Gets the preferred format for the response by inspecting, in the following order:
+ * * the request format set using setRequestFormat
+ * * the values of the Accept HTTP header
+ *
+ * Note that if you use this method, you should send the "Vary: Accept" header
+ * in the response to prevent any issues with intermediary HTTP caches.
+ */
+static public function getPreferredFormat (string $default ='html')  : string 
+{
+ 	 return (new Illuminate\Http\Request)->getPreferredFormat($default);
+}
+/**
  * Returns the preferred language.
  *
- * @param array $locales An array of ordered available locales
+ * @param string[] $locales An array of ordered available locales
  *
  * @return string|null The preferred locale
  */
@@ -1369,7 +1376,7 @@ static public function format ( $default ='html')
 /**
  * Retrieve an old input item.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  string|array|null  $default
  * @return string|array
  */
@@ -1420,7 +1427,7 @@ static public function flush ()
 /**
  * Retrieve a server variable from the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  string|array|null  $default
  * @return string|array|null
  */
@@ -1441,7 +1448,7 @@ static public function hasHeader ( $key )
 /**
  * Retrieve a header from the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  string|array|null  $default
  * @return string|array|null
  */
@@ -1524,7 +1531,7 @@ static public function keys ()
 /**
  * Get all of the input and files for the request.
  *
- * @param  array|mixed  $keys
+ * @param  array|mixed|null  $keys
  * @return array
  */
 static public function all ( $keys =NULL)  
@@ -1568,7 +1575,7 @@ static public function except ( $keys )
 /**
  * Retrieve a query string item from the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  string|array|null  $default
  * @return string|array|null
  */
@@ -1579,9 +1586,8 @@ static public function query ( $key =NULL, $default =NULL)
 /**
  * Retrieve a request payload item from the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  string|array|null  $default
- *
  * @return string|array|null
  */
 static public function post ( $key =NULL, $default =NULL)  
@@ -1601,7 +1607,7 @@ static public function hasCookie ( $key )
 /**
  * Retrieve a cookie from the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  string|array|null  $default
  * @return string|array|null
  */
@@ -1631,7 +1637,7 @@ static public function hasFile ( $key )
 /**
  * Retrieve a file from the request.
  *
- * @param  string  $key
+ * @param  string|null  $key
  * @param  mixed  $default
  * @return \Illuminate\Http\UploadedFile|\Illuminate\Http\UploadedFile[]|array|null
  */
@@ -1655,13 +1661,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Http\Request)->mixin($mixin);
+ 	 return (new Illuminate\Http\Request)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -1677,7 +1684,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -1690,7 +1697,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

@@ -1,4 +1,5 @@
 <?php
+use \Illuminate\Support\Str;
 
 if (!function_exists('route_class')) {
     //将当前请求的路由名称转换为 CSS 类名称
@@ -18,7 +19,7 @@ function category_nav_active($category_id)
 function make_excerpt($value, $length = 200)
 {
     $excerpt = trim(preg_replace('/\r\n|\r|\n+/', ' ', strip_tags($value)));
-    return str_limit($excerpt, $length);
+    return Str::limit($excerpt, $length);
 }
 
 function model_admin_link($title, $model)
@@ -49,11 +50,11 @@ function model_plural_name($model)
     // 获取基础类名，例如：传参 `App\Models\User` 会得到 `User`
     $class_name = class_basename($full_class_name);
 
-    // 蛇形命名，例如：传参 `User`  会得到 `user`, `FooBar` 会得到 `foo_bar`
-    $snake_case_name = snake_case($class_name);
+    //snake_case() 蛇形命名，例如：传参 `User`  会得到 `user`, `FooBar` 会得到 `foo_bar`
+    $snake_case_name = Str::snake($class_name);
 
     // 获取子串的复数形式，例如：传参 `user` 会得到 `users`
-    return str_plural($snake_case_name);
+    return \Illuminate\Support\Str::plural($snake_case_name);
 }
 
 if (!function_exists('is_url')) {

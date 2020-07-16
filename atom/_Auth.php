@@ -126,6 +126,15 @@ static public function logout ()
  	 return (new Illuminate\Auth\SessionGuard)->logout();
 }
 /**
+ * Log the user out of the application on their current device only.
+ *
+ * @return void
+ */
+static public function logoutCurrentDevice ()  
+{
+ 	 return (new Illuminate\Auth\SessionGuard)->logoutCurrentDevice();
+}
+/**
  * Invalidate other sessions for the current user.
  *
  * The application must be using the AuthenticateSession middleware.
@@ -344,13 +353,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Auth\SessionGuard)->mixin($mixin);
+ 	 return (new Illuminate\Auth\SessionGuard)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -366,7 +376,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -379,7 +389,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException

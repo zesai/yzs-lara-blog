@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Tag
- *
  * @property int    $id          标签主键
  * @property string $name        标签名
  * @property string $slug        slug

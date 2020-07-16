@@ -83,7 +83,7 @@ static public function whereKeyNot ( $id )
 /**
  * Add a basic where clause to the query.
  *
- * @param  string|array|\Closure  $column
+ * @param  \Closure|string|array  $column
  * @param  mixed   $operator
  * @param  mixed   $value
  * @param  string  $boolean
@@ -300,26 +300,13 @@ static public function getRelation ( $name )
  	 return (new Illuminate\Database\Eloquent\Builder)->getRelation($name);
 }
 /**
- * Get a generator for the given query.
+ * Get a lazy collection for the given query.
  *
- * @return \Generator
+ * @return \Illuminate\Support\LazyCollection
  */
 static public function cursor ()  
 {
  	 return (new Illuminate\Database\Eloquent\Builder)->cursor();
-}
-/**
- * Chunk the results of a query by comparing numeric IDs.
- *
- * @param  int  $count
- * @param  callable  $callback
- * @param  string|null  $column
- * @param  string|null  $alias
- * @return bool
- */
-static public function chunkById ( $count ,callable $callback , $column =NULL, $alias =NULL)  
-{
- 	 return (new Illuminate\Database\Eloquent\Builder)->chunkById($count,$callback,$column,$alias);
 }
 /**
  * Get an array with the values of a given column.
@@ -447,10 +434,10 @@ static public function onDelete (Closure $callback )
 /**
  * Call the given local model scopes.
  *
- * @param  array  $scopes
+ * @param  array|string  $scopes
  * @return static|mixed
  */
-static public function scopes (array $scopes )  
+static public function scopes ( $scopes )  
 {
  	 return (new Illuminate\Database\Eloquent\Builder)->scopes($scopes);
 }
@@ -640,6 +627,32 @@ static public function each (callable $callback , $count =1000)
  	 return (new Illuminate\Database\Eloquent\Builder)->each($callback,$count);
 }
 /**
+ * Chunk the results of a query by comparing IDs.
+ *
+ * @param  int  $count
+ * @param  callable  $callback
+ * @param  string|null  $column
+ * @param  string|null  $alias
+ * @return bool
+ */
+static public function chunkById ( $count ,callable $callback , $column =NULL, $alias =NULL)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->chunkById($count,$callback,$column,$alias);
+}
+/**
+ * Execute a callback over each item while chunking by id.
+ *
+ * @param  callable  $callback
+ * @param  int  $count
+ * @param  string  $column
+ * @param  string  $alias
+ * @return bool
+ */
+static public function eachById (callable $callback , $count =1000, $column =NULL, $alias =NULL)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->eachById($callback,$count,$column,$alias);
+}
+/**
  * Execute the query and get the first result.
  *
  * @param  array  $columns
@@ -654,7 +667,7 @@ static public function first ( $columns =array (  0 => '*',))
  *
  * @param  mixed  $value
  * @param  callable  $callback
- * @param  callable  $default
+ * @param  callable|null  $default
  * @return mixed|static|$this
  */
 static public function when ( $value , $callback , $default =NULL)  
@@ -676,7 +689,7 @@ static public function tap ( $callback )
  *
  * @param  mixed  $value
  * @param  callable  $callback
- * @param  callable  $default
+ * @param  callable|null  $default
  * @return mixed|static|$this
  */
 static public function unless ( $value , $callback , $default =NULL)  
@@ -686,7 +699,7 @@ static public function unless ( $value , $callback , $default =NULL)
 /**
  * Add a relationship count / exists condition to the query.
  *
- * @param  string  $relation
+ * @param  \Illuminate\Database\Eloquent\Relations\Relation|string  $relation
  * @param  string  $operator
  * @param  int     $count
  * @param  string  $boolean
@@ -778,6 +791,110 @@ static public function whereDoesntHave ( $relation ,Closure $callback =NULL)
 static public function orWhereDoesntHave ( $relation ,Closure $callback =NULL)  
 {
  	 return (new Illuminate\Database\Eloquent\Builder)->orWhereDoesntHave($relation,$callback);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query.
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  string  $operator
+ * @param  int  $count
+ * @param  string  $boolean
+ * @param  \Closure|null  $callback
+ * @return static
+ */
+static public function hasMorph ( $relation , $types , $operator ='>=', $count =1, $boolean ='and',Closure $callback =NULL)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->hasMorph($relation,$types,$operator,$count,$boolean,$callback);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query with an "or".
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  string  $operator
+ * @param  int  $count
+ * @return static
+ */
+static public function orHasMorph ( $relation , $types , $operator ='>=', $count =1)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->orHasMorph($relation,$types,$operator,$count);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query.
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  string  $boolean
+ * @param  \Closure|null  $callback
+ * @return static
+ */
+static public function doesntHaveMorph ( $relation , $types , $boolean ='and',Closure $callback =NULL)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->doesntHaveMorph($relation,$types,$boolean,$callback);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query with an "or".
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @return static
+ */
+static public function orDoesntHaveMorph ( $relation , $types )  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->orDoesntHaveMorph($relation,$types);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query with where clauses.
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  \Closure|null  $callback
+ * @param  string  $operator
+ * @param  int  $count
+ * @return static
+ */
+static public function whereHasMorph ( $relation , $types ,Closure $callback =NULL, $operator ='>=', $count =1)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->whereHasMorph($relation,$types,$callback,$operator,$count);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  \Closure  $callback
+ * @param  string  $operator
+ * @param  int  $count
+ * @return static
+ */
+static public function orWhereHasMorph ( $relation , $types ,Closure $callback =NULL, $operator ='>=', $count =1)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->orWhereHasMorph($relation,$types,$callback,$operator,$count);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query with where clauses.
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  \Closure|null  $callback
+ * @return static
+ */
+static public function whereDoesntHaveMorph ( $relation , $types ,Closure $callback =NULL)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->whereDoesntHaveMorph($relation,$types,$callback);
+}
+/**
+ * Add a polymorphic relationship count / exists condition to the query with where clauses and an "or".
+ *
+ * @param  string  $relation
+ * @param  string|array  $types
+ * @param  \Closure  $callback
+ * @return static
+ */
+static public function orWhereDoesntHaveMorph ( $relation , $types ,Closure $callback =NULL)  
+{
+ 	 return (new Illuminate\Database\Eloquent\Builder)->orWhereDoesntHaveMorph($relation,$types,$callback);
 }
 /**
  * Add subselect queries to count the relations.

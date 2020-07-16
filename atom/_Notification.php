@@ -74,12 +74,12 @@ static public function locale ( $locale )
 /**
  * Create a new manager instance.
  *
- * @param  \Illuminate\Foundation\Application  $app
+ * @param  \Illuminate\Contracts\Container\Container  $container
  * @return void
  */
-public function __construct ( $app )  
+public function __construct (Illuminate\Contracts\Container\Container $container )  
 {
- 	 return (new Illuminate\Notifications\ChannelManager)->__construct($app);
+ 	 return (new Illuminate\Notifications\ChannelManager)->__construct($container);
 }
 /**
  * Get a driver instance.

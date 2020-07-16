@@ -3,7 +3,7 @@ class Log {
 /**
  * Create a new Log manager instance.
  *
- * @param  \Illuminate\Foundation\Application  $app
+ * @param  \Illuminate\Contracts\Foundation\Application  $app
  * @return void
  */
 public function __construct ( $app )  
@@ -74,8 +74,8 @@ static public function extend ( $driver ,Closure $callback )
 /**
  * System is unusable.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -89,8 +89,8 @@ static public function emergency ( $message ,array $context =array ())
  * Example: Entire website down, database unavailable, etc. This should
  * trigger the SMS alerts and wake you up.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -103,8 +103,8 @@ static public function alert ( $message ,array $context =array ())
  *
  * Example: Application component unavailable, unexpected exception.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -116,8 +116,8 @@ static public function critical ( $message ,array $context =array ())
  * Runtime errors that do not require immediate action but should typically
  * be logged and monitored.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -131,8 +131,8 @@ static public function error ( $message ,array $context =array ())
  * Example: Use of deprecated APIs, poor use of an API, undesirable things
  * that are not necessarily wrong.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -143,8 +143,8 @@ static public function warning ( $message ,array $context =array ())
 /**
  * Normal but significant events.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -157,8 +157,8 @@ static public function notice ( $message ,array $context =array ())
  *
  * Example: User logs in, SQL logs.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -169,8 +169,8 @@ static public function info ( $message ,array $context =array ())
 /**
  * Detailed debug information.
  *
- * @param string $message
- * @param array  $context
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -181,9 +181,9 @@ static public function debug ( $message ,array $context =array ())
 /**
  * Logs with an arbitrary level.
  *
- * @param mixed  $level
- * @param string $message
- * @param array  $context
+ * @param  mixed  $level
+ * @param  string  $message
+ * @param  array  $context
  *
  * @return void
  */
@@ -195,7 +195,7 @@ static public function log ( $level , $message ,array $context =array ())
  * Dynamically call the default driver instance.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  */
 static public function __call ( $method , $parameters )  

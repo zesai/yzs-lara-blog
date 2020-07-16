@@ -6,7 +6,7 @@ public $verbs ;
  * Create a new Router instance.
  *
  * @param  \Illuminate\Contracts\Events\Dispatcher  $events
- * @param  \Illuminate\Container\Container  $container
+ * @param  \Illuminate\Container\Container|null  $container
  * @return void
  */
 public function __construct (Illuminate\Contracts\Events\Dispatcher $events ,Illuminate\Container\Container $container =NULL)  
@@ -239,7 +239,7 @@ static public function addRoute ( $methods , $uri , $action )
  * Return the response returned by the given route.
  *
  * @param  string  $name
- * @return mixed
+ * @return \Symfony\Component\HttpFoundation\Response
  */
 static public function respondWithRoute ( $name )  
 {
@@ -249,7 +249,7 @@ static public function respondWithRoute ( $name )
  * Dispatch the request to the application.
  *
  * @param  \Illuminate\Http\Request  $request
- * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+ * @return \Symfony\Component\HttpFoundation\Response
  */
 static public function dispatch (Illuminate\Http\Request $request )  
 {
@@ -280,7 +280,7 @@ static public function gatherRouteMiddleware (Illuminate\Routing\Route $route )
  *
  * @param  \Symfony\Component\HttpFoundation\Request  $request
  * @param  mixed  $response
- * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+ * @return \Symfony\Component\HttpFoundation\Response
  */
 static public function prepareResponse ( $request , $response )  
 {
@@ -291,7 +291,7 @@ static public function prepareResponse ( $request , $response )
  *
  * @param  \Symfony\Component\HttpFoundation\Request  $request
  * @param  mixed  $response
- * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
+ * @return \Symfony\Component\HttpFoundation\Response
  */
 static public function toResponse ( $request , $response )  
 {
@@ -302,6 +302,8 @@ static public function toResponse ( $request , $response )
  *
  * @param  \Illuminate\Routing\Route  $route
  * @return \Illuminate\Routing\Route
+ *
+ * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
  */
 static public function substituteBindings ( $route )  
 {
@@ -312,6 +314,8 @@ static public function substituteBindings ( $route )
  *
  * @param  \Illuminate\Routing\Route  $route
  * @return void
+ *
+ * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
  */
 static public function substituteImplicitBindings ( $route )  
 {
@@ -421,8 +425,6 @@ static public function bind ( $key , $binder )
  * @param  string  $class
  * @param  \Closure|null  $callback
  * @return void
- *
- * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
  */
 static public function model ( $key , $class ,Closure $callback =NULL)  
 {
@@ -490,7 +492,7 @@ static public function getGroupStack ()
  * Get a route parameter for the current route.
  *
  * @param  string  $key
- * @param  string  $default
+ * @param  string|null  $default
  * @return mixed
  */
 static public function input ( $key , $default =NULL)  
@@ -697,13 +699,14 @@ static public function macro ( $name , $macro )
  * Mix another object into the class.
  *
  * @param  object  $mixin
+ * @param  bool  $replace
  * @return void
  *
  * @throws \ReflectionException
  */
-static public function mixin ( $mixin )  
+static public function mixin ( $mixin , $replace =true)  
 {
- 	 return (new Illuminate\Routing\Router)->mixin($mixin);
+ 	 return (new Illuminate\Routing\Router)->mixin($mixin,$replace);
 }
 /**
  * Checks if macro is registered.
@@ -719,7 +722,7 @@ static public function hasMacro ( $name )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
@@ -732,7 +735,7 @@ static public function __callStatic ( $method , $parameters )
  * Dynamically handle calls to the class.
  *
  * @param  string  $method
- * @param  array   $parameters
+ * @param  array  $parameters
  * @return mixed
  *
  * @throws \BadMethodCallException
