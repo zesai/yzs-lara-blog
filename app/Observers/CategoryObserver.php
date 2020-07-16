@@ -6,6 +6,11 @@ use App\Models\Category;
 
 class CategoryObserver
 {
+    /**
+     * @param Category $category
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function creating(Category $category)
     {
         //如果创建的是一个根目录

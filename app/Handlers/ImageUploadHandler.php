@@ -4,7 +4,9 @@
 namespace App\Handlers;
 
 use Illuminate\Http\File;
+use Illuminate\Support\Str;
 use Image;
+use Intervention\Image\Constraint;
 use zgldh\QiniuStorage\QiniuStorage;
 
 class ImageUploadHandler
@@ -38,7 +40,7 @@ class ImageUploadHandler
 
         // 拼接文件名，加前缀是为了增加辨析度，前缀可以是相关数据模型的 ID
         // 值如：1_1493521050_7BVc9v9ujP.png
-        $filename = $file_prefix . '_' . time() . '_' . str_random(10) . '.' . $extension;
+        $filename = $file_prefix . '_' . time() . '_' . Str::random(10) . '.' . $extension;
 
         // 如果上传的不是图片将终止操作
         if ( ! in_array($extension, $this->allowed_ext)){
@@ -64,6 +66,12 @@ class ImageUploadHandler
         ];
     }
 
+    /**
+     * @param $file_path
+     * @param $max_width
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function reduceSize($file_path, $max_width)
     {
         // 先实例化，传参是文件的磁盘物理路径
@@ -71,6 +79,7 @@ class ImageUploadHandler
 
         $image->resize($max_width, null, function ($constraint){
             // 设定宽度是 $max_width，高度等比例双方缩放
+            /** @var Constraint $constraint*/
             $constraint->aspectRatio();
 
             // 防止裁图时图片尺寸变大
@@ -80,6 +89,13 @@ class ImageUploadHandler
         $image->save();
     }
 
+    /**
+     * @param $file
+     * @param $folder_name
+     * @return string
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function qiniuUpload($file, $folder_name)
     {
         $disk = QiniuStorage::disk('qiniu');

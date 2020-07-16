@@ -23,7 +23,10 @@ class UsersTableSeeder extends Seeder
             'http://larabbs.test/uploads/images/avatars/201909/09/7_1568033314_Z30jMXczOf.jpeg',
         ];
 
-        //生成数据集合
+        /**
+         * 生成数据集合
+         * @var User $users
+         */
         $users = factory(User::class)
                     ->times(10)
                     ->make()
@@ -34,7 +37,7 @@ class UsersTableSeeder extends Seeder
 
         //让隐藏字段可见，并将数据集合转换为数组
         $user_array = $users->makeVisible(['password','remember_token'])->toArray();
-        \App\Models\Tag::find(1);
+
         //插入到数据中
         User::insert($user_array);
         //单独处理第一个用户

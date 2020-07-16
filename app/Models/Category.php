@@ -2,8 +2,20 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
+/**
+ * Class Category
+ * @property int id
+ * @property int parent_id
+ * @property string name
+ * @property string description
+ * @property int is_directory
+ * @property int level
+ * @property string path
+ * @property Category parent
+ * @package App\Models
+ * @author zesai
+ * @date 2020/7/16
+ */
 class Category extends Model
 {
     protected $fillable = [

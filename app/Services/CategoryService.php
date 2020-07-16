@@ -3,12 +3,20 @@
 namespace App\Services;
 
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 
 class CategoryService
 {
-    // 这是一个递归方法
-    // $parentId 参数代表要获取子类目的父类目 ID，null 代表获取所有根类目
-    // $allCategories 参数代表数据库中所有的类目，如果是 null 代表需要从数据库中查询
+    /**
+     * 这是一个递归方法
+     * $parentId 参数代表要获取子类目的父类目 ID，null 代表获取所有根类目
+     * $allCategories 参数代表数据库中所有的类目，如果是 null 代表需要从数据库中查询
+     * @param null $parentId
+     * @param null $allCategories
+     * @return Category[]|Collection|\Illuminate\Support\Collection
+     * @author zesai
+     * @date 2020/7/16
+     */
     public function getCategoryTree($parentId = null, $allCategories = null)
     {
         if (is_null($allCategories)) {

@@ -5,7 +5,7 @@ use App\Models\Reply;
 use App\Models\User;
 use App\Models\Topic;
 
-class ReplysTableSeeder extends Seeder
+class RepliesTableSeeder extends Seeder
 {
     public function run()
     {
@@ -15,7 +15,8 @@ class ReplysTableSeeder extends Seeder
         //获取 faker 实例
         $faker = app(Faker\Generator::class);
 
-        $replys = factory(Reply::class)
+        /** @var Reply $replies */
+        $replies = factory(Reply::class)
             ->times(50)
             ->make()
             ->each(function ($reply, $index)
@@ -29,7 +30,7 @@ class ReplysTableSeeder extends Seeder
         });
 
         // 将数据集合转换为数组，并插入到数据库中
-        Reply::insert($replys->toArray());
+        Reply::insert($replies->toArray());
     }
 
 }

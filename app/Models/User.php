@@ -2,15 +2,26 @@
 
 namespace App\Models;
 
+use Eloquent;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 use Spatie\Permission\Traits\HasRoles;
+use Auth;
 
 /**
  * Class User
+ * @property int id
+ * @property string name
+ * @property string email
+ * @property string avatar
+ * @property int notification_count
+ * @property string created_at
+ * @property int last_actived_at
  * @package App\Models
+ * @mixin Eloquent
  * @author zesai
  * @date 2020/7/15
  */
@@ -27,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function notify($instance)
     {
         //如果要通知的人是当前用户，就不必通知了！
-        if ($this->id == \Auth::id()) {
+        if ($this->id == Auth::id()) {
             return ;
         }
 
@@ -116,7 +127,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function setAvatarAttribute($path)
     {
         //如果不是 http 开头，就是从后台传过来的
-        if ( !starts_with($path, 'http') ){
+        if ( !Str::start($path, 'http') ){
 
             $path = config('app.url') . '/uploads/images/avatars/' . $path;
 

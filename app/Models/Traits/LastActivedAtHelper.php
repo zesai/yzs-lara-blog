@@ -2,6 +2,7 @@
 
 namespace App\Models\Traits;
 
+use App\Models\User;
 use Redis;
 use Carbon\Carbon;
 
@@ -56,7 +57,10 @@ trait LastActivedAtHelper
             // 将 user_1 转换为 1
             $user_id = str_replace($this->field_prefix, '', $user_id);
 
-            // 只有当前用户存在时才更新到数据库
+            /**
+             * 只有当前用户存在时才更新到数据库
+             * @var User $user
+             */
             if ($user = $this->find($user_id)) {
                 $user->last_actived_at = $actived_at;
                 $user->save();

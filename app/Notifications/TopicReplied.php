@@ -3,6 +3,8 @@
 namespace App\Notifications;
 
 use App\Models\Reply;
+use App\Models\Topic;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -40,7 +42,11 @@ class TopicReplied extends Notification implements ShouldQueue
      */
     public function toDatabase($notifiable)
     {
+
+        /** @var Topic $topic */
         $topic = $this->reply->topic;
+        /** @var User $topic */
+        $user = $this->reply->user;
         $link = $topic->link(['#reply' . $this->reply->id]);
 
         //存入数据库中 data 的数据

@@ -2,6 +2,23 @@
 
 namespace App\Models;
 
+/**
+ * Class Topic
+ * @property int id
+ * @property string title
+ * @property string excerpt
+ * @property string body
+ * @property string slug
+ * @property string cover
+ * @property int view_count
+ * @property Category category
+ * @property User user
+ * @property Reply replies
+ * @property Tag tags
+ * @package App\Models
+ * @author zesai
+ * @date 2020/7/16
+ */
 class Topic extends Model
 {
     protected $fillable = [
