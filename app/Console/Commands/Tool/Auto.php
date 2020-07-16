@@ -25,7 +25,7 @@ class Auto extends Command
 {
 
     private $dirs = [
-        'Market'
+        'Models'
     ];
 
     /**
