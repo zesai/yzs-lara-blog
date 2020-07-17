@@ -23,7 +23,7 @@ class ExampleController extends AdminController
      */
     protected function grid()
     {
-        $grid = new Grid(new ExampleModel);
+        $grid = new Grid(new Example);
 
         $grid->column('id', __('ID'))->sortable();
         $grid->column('created_at', __('Created at'));
@@ -40,7 +40,7 @@ class ExampleController extends AdminController
      */
     protected function detail($id)
     {
-        $show = new Show(ExampleModel::findOrFail($id));
+        $show = new Show(Example::findOrFail($id));
 
         $show->field('id', __('ID'));
         $show->field('created_at', __('Created at'));

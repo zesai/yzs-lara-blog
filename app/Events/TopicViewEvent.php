@@ -6,10 +6,8 @@ use App\Models\Topic;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class TopicViewEvent
 {
@@ -21,7 +19,8 @@ class TopicViewEvent
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param Topic $topic
+     * @param $ip
      */
     public function __construct(Topic $topic, $ip)
     {
@@ -32,7 +31,7 @@ class TopicViewEvent
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return \Illuminate\Broadcasting\Channel|array
+     * @return Channel|array
      */
     public function broadcastOn()
     {

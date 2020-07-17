@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Routing\Router;
-
 Admin::routes();
 
 Route::group([

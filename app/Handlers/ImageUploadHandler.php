@@ -7,6 +7,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Str;
 use Image;
 use Intervention\Image\Constraint;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use zgldh\QiniuStorage\QiniuStorage;
 
 class ImageUploadHandler
@@ -15,7 +16,7 @@ class ImageUploadHandler
     protected $allowed_ext = ['jpg','png','jpeg','gif','bmp'];
 
     /**
-     * @param File $file
+     * @param UploadedFile $file
      * @param $folder
      * @param $file_prefix
      * @param bool $max_width
