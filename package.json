@@ -20,13 +20,13 @@
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
         "sass-loader": "^8.0.0",
+        "tailwindcss": "^1.5.1",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.8.1",
         "mixin-deep": "^2.0.1",
-        "set-value": "^3.0.1",
-        "tailwindcss": "^1.5.1"
+        "set-value": "^3.0.1"
     }
 }
