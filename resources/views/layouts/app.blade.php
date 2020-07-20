@@ -40,7 +40,7 @@
         }
     </style>
     @yield('styles')
-<script data-ad-client="ca-pub-7932191457233315" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+{{--<script data-ad-client="ca-pub-7932191457233315" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
 </head>
 <body>
     <div id="app" class="{{ route_class() }}-page">
