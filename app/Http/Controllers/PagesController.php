@@ -20,4 +20,9 @@ class PagesController extends Controller
 
         return view('pages.permission_denied');
     }
+
+    public function test()
+    {
+        return view('test.index');
+    }
 }

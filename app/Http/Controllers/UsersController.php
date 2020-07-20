@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use \Illuminate\View\View;
 
 class UsersController extends Controller
@@ -30,7 +32,7 @@ class UsersController extends Controller
     /**
      * @param User $user
      * @return Factory|View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @throws AuthorizationException
      * @author zesai
      * @date 2020/7/15
      */
@@ -44,8 +46,8 @@ class UsersController extends Controller
      * @param UserRequest $Request
      * @param User $user
      * @param ImageUploadHandler $uploader
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return RedirectResponse
+     * @throws AuthorizationException
      * @author zesai
      * @date 2020/7/15
      */
@@ -66,4 +68,5 @@ class UsersController extends Controller
 
         return redirect()->route('users.show',$user->id)->with('success','您的个人资料更新成功');
     }
+
 }

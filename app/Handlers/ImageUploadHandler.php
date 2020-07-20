@@ -103,7 +103,7 @@ class ImageUploadHandler
 
         $filename = $disk->put($folder_name, $file);
 
-        return 'http://' . env('QINIUYUN_DOMAIN_DEFAULT') . '/' . $filename;
+        return $filename;
 
     }
 

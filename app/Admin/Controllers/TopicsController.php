@@ -124,7 +124,7 @@ class TopicsController extends AdminController
         $form->image('cover', __('封面图'))
             ->move(function () {
                 if (!empty(env('QINIUYUN'))) {
-                    return "/images/topics/" . date('Ym/d',time());
+                    return "images/topics/" . date('Ym/d',time());
                 }
             }, function ($file) {
                 return '1_' . time() . '_' . Str::random(10) . '.' . $file->guessExtension();

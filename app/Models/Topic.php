@@ -98,8 +98,8 @@ class Topic extends Model
         $this->save();
     }
 
-//    public function getCoverbutes()
-//    {
-//        if ()
-//    }
+    public function getCoverAttributes($cover)
+    {
+        return env('QINIUYUN_DOMAIN_DEFAULT') . $cover;
+    }
 }

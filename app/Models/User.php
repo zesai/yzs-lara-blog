@@ -135,4 +135,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
         $this->attributes['avatar'] = $path;
     }
+
+    public function getAvatarAttributes($cover)
+    {
+        return env('QINIUYUN_DOMAIN_DEFAULT') . $cover;
+    }
 }

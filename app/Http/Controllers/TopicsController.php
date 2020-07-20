@@ -5,15 +5,15 @@ namespace App\Http\Controllers;
 use App\Events\TopicViewEvent;
 use App\Handlers\ImageUploadHandler;
 use App\Markdown\Markdown;
-use App\Markdown\Parser;
 use App\Models\Category;
-use App\Models\Link;
 use App\Models\Topic;
-use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\TopicRequest;
 use Auth;
-use Illuminate\Support\Facades\Redis;
+use Illuminate\View\View;
 
 class TopicsController extends Controller
 {
@@ -27,8 +27,7 @@ class TopicsController extends Controller
      * 话题首页
      * @param Request $request
      * @param Topic $topic
-     * @param User $user
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
 	public function index(Request $request, Topic $topic)
 	{
@@ -49,7 +48,8 @@ class TopicsController extends Controller
      * 显示文章
      * @param Request $request
      * @param Topic $topic
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param Markdown $markdown
+     * @return Factory|View
      */
     public function show(Request $request, Topic $topic, Markdown $markdown)
     {
@@ -81,7 +81,7 @@ class TopicsController extends Controller
     /**
      * 显示话题创建页
      * @param Topic $topic
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
 	public function create(Topic $topic)
 	{
@@ -93,7 +93,7 @@ class TopicsController extends Controller
      * 创建话题
      * @param TopicRequest $request
      * @param Topic $topic
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
 	public function store(TopicRequest $request, Topic $topic)
 	{
@@ -106,8 +106,8 @@ class TopicsController extends Controller
     /**
      * 修改话题页
      * @param Topic $topic
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return Factory|View
+     * @throws AuthorizationException
      */
 	public function edit(Topic $topic)
 	{
@@ -120,8 +120,8 @@ class TopicsController extends Controller
      * 修改话题
      * @param TopicRequest $request
      * @param Topic $topic
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
 	public function update(TopicRequest $request, Topic $topic)
 	{
@@ -134,8 +134,8 @@ class TopicsController extends Controller
     /**
      * 删除话题
      * @param Topic $topic
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Illuminate\Auth\Access\AuthorizationException
+     * @return RedirectResponse
+     * @throws AuthorizationException
      */
 	public function destroy(Topic $topic)
 	{
