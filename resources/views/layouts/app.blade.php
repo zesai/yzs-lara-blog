@@ -13,7 +13,7 @@
     <meta name="keyword" content="@yield('keyword', 'PHP,Laravel,后端,MySQL,文章')" />
     <!-- css 样式 -->
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">--}}
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <style>
         /*返回顶部样式*/
         #scrollUp {
@@ -55,7 +55,7 @@
     @if (app()->isLocal())
 {{--        @include('sudosu::user-selector')--}}
     @endif
-    <script src="{{ asset('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/app.js') }}"></script>
     <script src="/js/jquery.scrollUp.js"></script>
     <script>
         $.scrollUp({
