@@ -39,6 +39,7 @@ class TopicsController extends Controller
             $topics->where('title', 'like', "%{$search}%")
                 ->orWhere('body', 'like', "%{$search}%");
         }
+
         $topics = $topics->paginate(20);
 
 		return view('topics.index', compact('topics','search'));

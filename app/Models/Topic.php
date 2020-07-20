@@ -98,7 +98,7 @@ class Topic extends Model
         $this->save();
     }
 
-    public function getCoverAttributes($cover)
+    public function getCoverAttribute($cover)
     {
         return env('QINIUYUN_DOMAIN_DEFAULT') . $cover;
     }
