@@ -154,25 +154,6 @@
           $('a[title="file"]').fluidbox({
               stackIndex:990,
           });
-          //文章标题栏
-          // $(".topic-body h2, .topic-body h3, .topic-body h4, .topic-body h5, .topic-body h6").each(function(i,item){
-          //     // var tag = $(item).get(0).localName;
-          //     $(item).attr("id","title-"+i);
-          //     // $(item).attr("class","list-group-item list-group-item-action list-group-item-light list-item-"+i+ ' new'+tag);
-          //     // $(item).attr("href","#title-"+i+"");
-          //     // $("#toc").append(item);
-          //     $("#left-title-box").append('<a class="list-group-item list-group-item-action list-group-item-light list-item-'+i+'" href="#title-'+i+'" style="border: none">'+$(this).text()+'</a>');
-          //     // $(".newh2").css("margin-left",0);
-          //     // $(".newh3").css("margin-left",20);
-          //     // $(".newh4").css("margin-left",40);
-          //     // $(".newh5").css("margin-left",60);
-          //     // $(".newh6").css("margin-left",80);
-          // });
-          //左侧标题栏固定
-          // var fixtop = $("#topic-title-box");
-          // fixtop.scrollFix({
-          //     distanceTop:20
-          // });
       })
   </script>
 @endsection

@@ -1,71 +1,121 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+{{--<div class="container">--}}
+{{--    <div class="row justify-content-center">--}}
+{{--        <div class="col-md-8">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-header">{{ __('Login') }}</div>--}}
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+{{--                <div class="card-body">--}}
+{{--                    <form method="POST" action="{{ route('login') }}">--}}
+{{--                        @csrf--}}
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>--}}
 
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>--}}
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+{{--                                @if ($errors->has('email'))--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('email') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+{{--                        <div class="form-group row">--}}
+{{--                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>--}}
 
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>--}}
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+{{--                                @if ($errors->has('password'))--}}
+{{--                                    <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $errors->first('password') }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+{{--                        <div class="form-group row">--}}
+{{--                            <div class="col-md-6 offset-md-4">--}}
+{{--                                <div class="form-check">--}}
+{{--                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>--}}
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+{{--                                    <label class="form-check-label" for="remember">--}}
+{{--                                        {{ __('Remember Me') }}--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </form>
+{{--                        <div class="form-group row mb-0">--}}
+{{--                            <div class="col-md-8 offset-md-4">--}}
+{{--                                <button type="submit" class="btn btn-primary">--}}
+{{--                                    {{ __('Login') }}--}}
+{{--                                </button>--}}
+
+{{--                                @if (Route::has('password.request'))--}}
+{{--                                    <a class="btn btn-link" href="{{ route('password.request') }}">--}}
+{{--                                        {{ __('Forgot Your Password?') }}--}}
+{{--                                    </a>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </form>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
+
+
+<div class="container mx-auto">
+    <div class="flex bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm lg:max-w-4xl">
+        <div class="hidden lg:block lg:w-1/2 bg-cover" style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')"></div>
+        <div class="w-full p-8 lg:w-1/2">
+            <h2 class="text-2xl font-semibold text-gray-700 text-center">Brand</h2>
+            <p class="text-xl text-gray-600 text-center">欢迎回来!</p>
+            <a href="#" class="flex items-center justify-center mt-4 text-white rounded-lg shadow-md hover:bg-gray-100">
+                <div class="px-4 py-3">
+                    <svg class="h-6 w-6" viewBox="0 0 40 40">
+                        <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#FFC107"/>
+                        <path d="M5.25497 12.2425L10.7308 16.2583C12.2125 12.59 15.8008 9.99999 20 9.99999C22.5491 9.99999 24.8683 10.9617 26.6341 12.5325L31.3483 7.81833C28.3716 5.04416 24.39 3.33333 20 3.33333C13.5983 3.33333 8.04663 6.94749 5.25497 12.2425Z" fill="#FF3D00"/>
+                        <path d="M20 36.6667C24.305 36.6667 28.2167 35.0192 31.1742 32.34L26.0159 27.975C24.3425 29.2425 22.2625 30 20 30C15.665 30 11.9842 27.2359 10.5975 23.3784L5.16254 27.5659C7.92087 32.9634 13.5225 36.6667 20 36.6667Z" fill="#4CAF50"/>
+                        <path d="M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.7592 25.1975 27.56 26.805 26.0133 27.9758C26.0142 27.975 26.015 27.975 26.0158 27.9742L31.1742 32.3392C30.8092 32.6708 36.6667 28.3333 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z" fill="#1976D2"/>
+                    </svg>
                 </div>
+                <h1 class="px-4 py-3 w-5/6 text-center text-gray-600 font-bold">谷歌登陆</h1>
+            </a>
+            <div class="mt-4 flex items-center justify-between">
+                <span class="border-b w-1/5 lg:w-1/4"></span>
+                <a href="#" class="text-xs text-center text-gray-500 uppercase">使用邮箱登陆</a>
+                <span class="border-b w-1/5 lg:w-1/4"></span>
+            </div>
+            <div class="mt-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2">邮箱地址</label>
+                <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none" type="email">
+            </div>
+            <div class="mt-4">
+                <div class="flex justify-between">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">密码</label>
+                    <a href="#" class="text-xs text-gray-500">忘记密码？</a>
+                </div>
+
+                <input class="bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                       type="password"
+                />
+            </div>
+            <div class="mt-8">
+                <button class="bg-gray-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-gray-600">登陆</button>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+                <span class="border-b w-1/5 md:w-1/4"></span>
+                <a href="#" class="text-xs text-gray-500">注册</a>
+                <span class="border-b w-1/5 md:w-1/4"></span>
             </div>
         </div>
     </div>
@@ -73,57 +123,3 @@
 
 @endsection
 
-{{--<!doctype html>--}}
-{{--<html lang="en">--}}
-{{--<head>--}}
-{{--    <meta charset="UTF-8">--}}
-{{--    <meta name="viewport"--}}
-{{--          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">--}}
-{{--    <meta http-equiv="X-UA-Compatible" content="ie=edge">--}}
-{{--    --}}{{--    <link rel="stylesheet" href="{{ asset('css/app.css') }}">--}}
-{{--    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">--}}
-{{--    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">--}}
-{{--    <title>Document</title>--}}
-{{--</head>--}}
-{{--<body class="h-full bg-gray-300" style="font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;">--}}
-{{--<div class="flex items-center justify-center h-full mt-12">--}}
-{{--    <div class="md:flex max-w-sm md:max-w-3xl shadow-2xl rounded">--}}
-{{--        <div class="bg-white md:w-1/2 p-8">--}}
-{{--            <h1 class="text-gray-700 text-3xl text-center mb-4">SIGN IN</h1>--}}
-{{--            <form class="text-gray-600" method="POST" action="{{ route('login') }}">--}}
-{{--                <div class="my-3">--}}
-{{--                    <input type="text"--}}
-{{--                           placeholder="Email"--}}
-{{--                           class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline"--}}
-{{--                           name="email"--}}
-{{--                    />--}}
-{{--                </div>--}}
-{{--                <div class="my-3">--}}
-{{--                    <input type="text"--}}
-{{--                           placeholder="Password"--}}
-{{--                           class="border rounded w-full py-2 px-4 outline-none focus:shadow-outline"--}}
-{{--                           name="password"--}}
-{{--                    />--}}
-{{--                </div>--}}
-{{--                <div class="my-3 flex justify-between">--}}
-{{--                    <label><input type="checkbox" name="remember"> Remember me </label>--}}
-{{--                    <a href="{{route('password.request')}}" class="text-blue-500"> Forgot email or password </a>--}}
-{{--                </div>--}}
-{{--                <div class="my-3 flex">--}}
-{{--                    <button class="border rounded w-1/2 py-2 focus:outline-none">--}}
-{{--                        REGISTER--}}
-{{--                    </button>--}}
-{{--                    <button type="submit"--}}
-{{--                            class="border rounded w-1/2 py-2 border-blue-700 bg-blue-600 text-white ml-2 focus:outline-none">--}}
-{{--                        SIGN IN--}}
-{{--                    </button>--}}
-{{--                </div>--}}
-{{--            </form>--}}
-{{--        </div>--}}
-{{--        <div class="hidden md:block w-1/2">--}}
-{{--            <img src="/uploads/images/topics/1.jpg" alt="" class="w-full h-full object-cover">--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
-{{--</body>--}}
-{{--</html>--}}

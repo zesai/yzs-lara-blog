@@ -13,50 +13,25 @@
     <meta name="keyword" content="@yield('keyword', 'PHP,Laravel,后端,MySQL,文章')" />
     <!-- css 样式 -->
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">--}}
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <style>
-        /*返回顶部样式*/
-        #scrollUp {
-          bottom: 75px;
-          right: 35px;
-          width: 38px;
-          height: 38px;
-          background: #444;
-          color: #ffffff;
-          font-size: 20px;
-          display: block;
-          line-height: 40px;
-          position: fixed;
-          text-align: center;
-          text-decoration: none;
-          -webkit-transition: all 0.5s;
-          -o-transition: all 0.5s;
-          -moz-transition: all 0.5s;
-          transition: all 0.5s;
-          z-index: 1000;
-          -webkit-border-radius: 5px;
-          -moz-border-radius: 5px;
-          border-radius: 5px;
-        }
-    </style>
+{{--    <link rel="stylesheet" href="{{ mix('css/app.css') }}">--}}
+    <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
+
     @yield('styles')
-{{--<script data-ad-client="ca-pub-7932191457233315" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
 </head>
-<body>
-    <div id="app" class="{{ route_class() }}-page">
+<body class="bg-gray-300">
+{{--<div class="container h-screen"></div>--}}
         @include('layouts._header')
-        <div class="container">
+
+        <div class="container h-full">
             @include('shared._messages')
             @yield('content')
         </div>
+
         @include('layouts._footer')
-    </div>
-    {{-- js --}}
-    @if (app()->isLocal())
-{{--        @include('sudosu::user-selector')--}}
-    @endif
+
     <script src="{{ mix('/js/app.js') }}"></script>
-    <script src="/js/jquery.scrollUp.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
     <script>
         $.scrollUp({
             scrollText: '<i class="fa fa-angle-up"></i>',
@@ -65,7 +40,6 @@
             animation: 'fade'
         });
     </script>
-{{--    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>--}}
     @yield('scripts')
 </body>
 </html>
