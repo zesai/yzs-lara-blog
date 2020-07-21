@@ -12,7 +12,8 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 /storage/
-.idea/
+.idea
+.DS_Store
 /storage/laravels.json
 /storage/laravels.pid
 .phpstorm.meta.php
