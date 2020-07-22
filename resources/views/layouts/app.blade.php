@@ -14,6 +14,15 @@
     <!-- css 样式 -->
 {{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">--}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?254cd59101493ebe4321f6000fb41461";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
     <style>
         /*返回顶部样式*/
         #scrollUp {
